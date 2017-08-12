@@ -7,19 +7,97 @@ const cssUtils = require("../utils/css-utils.js");
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
   :root {
+    --font-body-small: 1.125rem;
+    --font-body-large: 1.25rem;
+    --font-family-fallback:   -apple-system, system-ui, blinkmacsystemfont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans';
+    --font-family-serif:      'Source Serif Pro', 'Georgia', 'Times New Roman';
+    --font-family-sans:       'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-family-mono:       'Source Code Pro', Apercu, 'Fira Mono', Courier, monospace;
+    --font-weight-bold:       800;
 
+    --color-neutral-lightest: ${variables.COLORS.neutral.lightest};
+    --color-neutral-lighter:  ${variables.COLORS.neutral.lighter};
+    --color-neutral-light:    ${variables.COLORS.neutral.light};
+    --color-neutral-dark:     ${variables.COLORS.neutral.dark};
+    --color-neutral-darker:   ${variables.COLORS.neutral.darker};
+    --color-neutral-darkest:  ${variables.COLORS.neutral.darkest};
+
+    --color-primary-base:     ${variables.COLORS.primary.base};
+    --color-success-base:     ${variables.COLORS.success.base};
+
+    --border-radius-base:     4px;
+    --letter-spacing:         0.05em;
+
+    --optical-adjustment-smaller: 0.25rem;
+    --optical-adjustment-small:   0.35rem;
+    --optical-adjustment-base:    0.5rem;
+    --optical-adjustment-large:   0.75rem;
+
+    --spacing-smaller:  ${1.6 / 4}rem;
+    --spacing-small:    ${1.6 / 2}rem;
+    --spacing-base:     ${1.6 * 1}rem;
+    --spacing-large:    ${1.6 * 2}rem;
+    --spacing-larger:   ${1.6 * 4}rem;
+    --gutter:           var(--spacing-small);
   }
 
   @media screen and (min-width: ${cssUtils.SIZES.medium}rem) {
     :root {
-
+      --spacing-base:   ${cssUtils.responsiveSize(1.6 * 1, 1.75 * 1)};
+      --spacing-large:  ${cssUtils.responsiveSize(1.6 * 2, 1.75 * 2)};
+      --spacing-larger: ${cssUtils.responsiveSize(1.6 * 4, 1.75 * 4)};
+      --gutter:         var(--spacing-large);
     }
   }
 
   @media screen and (min-width: ${cssUtils.SIZES.large}rem) {
     :root {
-
+      --spacing-base:   ${1.75 * 1}rem;
+      --spacing-large:  ${1.75 * 2}rem;
+      --spacing-larger: ${1.75 * 3}rem;
     }
+  }
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: local('Source Sans Pro'), url(./assets/fonts/source-sans-pro-regular.woff) format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: local('Source Sans Pro'), url(./assets/fonts/source-sans-pro-bold.woff) format('woff');
+    font-weight: 800;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Source Serif Pro';
+    src: local('Source Serif Pro'), url(./assets/fonts/source-serif-pro-regular.woff) format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Source Serif Pro';
+    src: local('Source Serif Pro'), url(./assets/fonts/source-serif-pro-black.woff) format('woff');
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro'), url(./assets/fonts/source-code-pro-regular.woff) format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro'), url(./assets/fonts/source-code-pro-bold.woff) format('woff');
+    font-weight: 800;
+    font-style: normal;
   }
 
   * {
@@ -27,10 +105,24 @@ injectGlobal`
   }
 
   * + * {
-    margin-top: ;
+    margin-top: var(--spacing-base);
   }
 
-  *:focus
+  *:focus {
+    outline: 4px solid #00defd;
+  }
+
+  /* Experimental spacing properties */
+  * + fieldset,
+  * + pre,
+  * + hr,
+  h1 + div,
+  h2 + div,
+  h3 + div,
+  h4 + div,
+  blockquote + div,
+  p + div {
+    margin-top: calc(var(--spacing-base) + var(--optical-adjustment-base));
   }
 
   html,
@@ -47,12 +139,32 @@ injectGlobal`
 
   body {
     font-family: var(--font-family-fallback);
+    ${variables.TYPESIZES.base}
   }
 
   *::selection {
-
+    background-color: #fff3e2;
   }
 
+  .wfLoadedSourceSerifPro {
+    font-family: var(--font-family-sans);
+  }
+
+  pre {
+    display: block;
+    padding: 0 var(--spacing-smaller) 0 0;
+    font-family: var(--font-family-mono);
+    background-color: var(--color-neutral-lighter);
+    border-radius: var(--border-radius-base);
+    white-space: pre-wrap;
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+  }
+
+  sup {
+    font-variant-position: super;
+    font-feature-settings: "sups";
+  }
 `;
 
 export default () =>
