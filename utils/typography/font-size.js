@@ -8,7 +8,7 @@ export default function getFontSize(int) {
 
   const fontSizeSmall    = getModularScale(int, 'small');
   const fontSizeLarge    = getModularScale(int, 'large');
-  const lineHeight       = getLineHeight(fontSizeLarge);
+  const lineHeight       = getLineHeight(fontSizeSmall);
   const fluidType        = getFluidType(fontSizeSmall, fontSizeLarge);
   const mediumBreakPoint = variables.BREAKPOINTS.medium;
   const largeBreakPoint  = variables.BREAKPOINTS.large;
