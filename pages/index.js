@@ -7,4 +7,5 @@ export default () =>
 	<div>
 		<Meta />
 		<H1>Hello World</H1>
+    <p>Upload a font to see the typographic features it supports. Don’t worry, fonts aren’t stored. Everything happens in the browser.</p>
 	</div>

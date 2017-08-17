@@ -2,13 +2,13 @@ import Head from "next/head";
 import { injectGlobal } from "styled-components";
 
 const variables = require("../utils/css-variables.js");
-const cssUtils = require("../utils/css-utils.js");
+const modularScale = require("../utils/typography/modular-scale.js");
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
   :root {
-    --font-body-small: 1.125rem;
-    --font-body-large: 1.25rem;
+    --font-body-small: ${variables.TYPEUNITS.bodyFont.small}rem;
+    --font-body-large: ${variables.TYPEUNITS.bodyFont.large}rem;
     --font-family-fallback:   -apple-system, system-ui, blinkmacsystemfont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans';
     --font-family-serif:      'Source Serif Pro', 'Georgia', 'Times New Roman';
     --font-family-sans:       'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -33,28 +33,28 @@ injectGlobal`
     --optical-adjustment-base:    0.5rem;
     --optical-adjustment-large:   0.75rem;
 
-    --spacing-smaller:  ${1.6 / 4}rem;
-    --spacing-small:    ${1.6 / 2}rem;
-    --spacing-base:     ${1.6 * 1}rem;
-    --spacing-large:    ${1.6 * 2}rem;
-    --spacing-larger:   ${1.6 * 4}rem;
-    --gutter:           var(--spacing-small);
+    --spacing-smaller:  1rem;
+    --spacing-small:    1rem;
+    --spacing-base:     1rem;
+    --spacing-large:    1rem;
+    --spacing-larger:   1rem;
+    --column-gap:       var(--spacing-small);
   }
 
-  @media screen and (min-width: ${cssUtils.SIZES.medium}rem) {
+  @media screen and (min-width: ${variables.BREAKPOINTS.medium}rem) {
     :root {
-      --spacing-base:   ${cssUtils.responsiveSize(1.6 * 1, 1.75 * 1)};
-      --spacing-large:  ${cssUtils.responsiveSize(1.6 * 2, 1.75 * 2)};
-      --spacing-larger: ${cssUtils.responsiveSize(1.6 * 4, 1.75 * 4)};
-      --gutter:         var(--spacing-large);
+      --spacing-base:   1rem;
+      --spacing-large:  1rem;
+      --spacing-larger: 1rem;
+      --column-gap:     var(--spacing-large);
     }
   }
 
-  @media screen and (min-width: ${cssUtils.SIZES.large}rem) {
+  @media screen and (min-width: ${variables.BREAKPOINTS.large}rem) {
     :root {
-      --spacing-base:   ${1.75 * 1}rem;
-      --spacing-large:  ${1.75 * 2}rem;
-      --spacing-larger: ${1.75 * 3}rem;
+      --spacing-base:   1rem;
+      --spacing-large:  1rem;
+      --spacing-larger: 1rem;
     }
   }
 
@@ -139,7 +139,7 @@ injectGlobal`
 
   body {
     font-family: var(--font-family-fallback);
-    ${variables.TYPESIZES.base}
+    ${variables.TYPESTYLES.base}
   }
 
   *::selection {
