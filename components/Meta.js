@@ -33,7 +33,7 @@ injectGlobal`
     --optical-adjustment-base:    0.5rem;
     --optical-adjustment-large:   0.75rem;
 
-    --spacing-smaller:  3rem;
+    --spacing-smaller:  1rem;
     --spacing-small:    1rem;
     --spacing-base:     1rem;
     --spacing-large:    1rem;

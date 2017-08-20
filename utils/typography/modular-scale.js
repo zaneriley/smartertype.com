@@ -12,16 +12,17 @@ export default function getModularScale(direction, scale) {
     fontSize = variables.TYPEUNITS.bodyFont.large;
     typeScale = variables.TYPEUNITS.typeScale.large;
   }
-  console.log(typeScale);
 
-  if (direction <= 0) {
-    modularSize = Math.pow(typeScale, direction) / fontSize;
-  } else if (direction >= 0) {
+  if (direction < 0) {
+    modularSize = fontSize / typeScale * direction * -1;
+  } else if (direction === 0) {
+    modularSize = fontSize;
+  } else if (direction > 0) {
     modularSize = Math.pow(typeScale, direction) * fontSize;
   }
 
   const valueInPX = Math.floor(modularSize);
-  const valueInREM = pxToREM(valueInPX);
+  const valueInREM = pxToRem(valueInPX);
 
   return valueInREM;
 

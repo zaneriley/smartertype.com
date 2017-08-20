@@ -11,9 +11,8 @@ export default function getFluidType(
   if (!maxFont) maxFont = variables.TYPEUNITS.bodyFont.large;
   if (!minScreen) minScreen = variables.BREAKPOINTS.medium;
   if (!maxScreen) maxScreen = variables.BREAKPOINTS.large;
-  if (!units) units = "rem";
+  if (!units) units = `rem`;
   return `
-    calc(${minFont}${units} + ${maxFont - minFont}
-        * (100vw - ${minScreen}${units}) / ${maxScreen - minScreen});
+    calc(${minFont}${units} + ${maxFont - minFont} * (100vw - ${minScreen}${units}) / ${maxScreen - minScreen});
   `;
 }

@@ -17,7 +17,7 @@ export default function getFontSize(int) {
     font-size: ${fontSizeSmall}rem;
     line-height: ${lineHeight};
     @media screen and (min-width: ${mediumBreakPoint}rem) {
-      ${fluidType}
+      font-size: ${fluidType};
     }
     @media screen and (min-width: ${largeBreakPoint}rem) {
       font-size: ${fontSizeLarge}rem;

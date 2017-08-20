@@ -13,7 +13,7 @@ export const BREAKPOINTS = {
 export const TYPEUNITS = {
   bodyFont: {
     small: 19,
-    large: 22,
+    large: 19,
     lineHeight: 28,
   },
   typeScale: {
@@ -36,19 +36,21 @@ export const TYPESTYLES = {
     `,
 
    'base': `
-     ${getFontSize(1)};
+     ${getFontSize(0)}
     `,
 
    'large': `
-     ${getFontSize(1)};
+     ${getFontSize(1)}
     `,
 
    'larger': `
      ${getFontSize(2)}
+     font-family: var(--font-family-serif);
     `,
 
    'largest': `
      ${getFontSize(3)}
+     font-family: var(--font-family-serif);
     `,
 }
 

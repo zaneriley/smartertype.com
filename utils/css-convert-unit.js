@@ -38,7 +38,7 @@ const unitLess = length => parseUnit(length)[0];
 //   For converting to relative units, the absolute length in px to which the
 //   output value will refer. Defaults to the same as fromContext, since it is
 //   rarely needed.
-function convertUnit(baseFontSize, toUnit, fromContext, toContext) {
+export default function convertUnit(baseFontSize, toUnit, fromContext, toContext) {
   if (baseFontSize == null) { baseFontSize = baseFontSize; }
   return function(length, toUnit, fromContext, toContext) {
     if (fromContext == null) { fromContext = baseFontSize; }
@@ -106,5 +106,3 @@ Returning original value.`
     return parseFloat(outputLength.toFixed(5)) + toUnit;
   };
 };
-
-export default convertUnit;
