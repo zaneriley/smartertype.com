@@ -1,4 +1,5 @@
-const variables = require("../css-variables.js");
+import pxToRem from "../px-to-rem.js";
+import { BREAKPOINTS, TYPEUNITS } from "../css-variables.js";
 
 export default function getFluidType(
   minFont,
@@ -7,10 +8,10 @@ export default function getFluidType(
   maxScreen,
   units
 ) {
-  if (!minFont) minFont = variables.TYPEUNITS.bodyFont.small;
-  if (!maxFont) maxFont = variables.TYPEUNITS.bodyFont.large;
-  if (!minScreen) minScreen = variables.BREAKPOINTS.medium;
-  if (!maxScreen) maxScreen = variables.BREAKPOINTS.large;
+  if (!minFont) minFont = TYPEUNITS.bodyFont.small;
+  if (!maxFont) maxFont = TYPEUNITS.bodyFont.large;
+  if (!minScreen) minScreen = pxToRem(BREAKPOINTS.medium);
+  if (!maxScreen) maxScreen = pxToRem(BREAKPOINTS.large);
   if (!units) units = `rem`;
   return `
     calc(${minFont}${units} + ${maxFont - minFont} * (100vw - ${minScreen}${units}) / ${maxScreen - minScreen});

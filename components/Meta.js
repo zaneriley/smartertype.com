@@ -1,29 +1,30 @@
 import Head from "next/head";
 import { injectGlobal } from "styled-components";
+import pxToRem from "../utils/px-to-rem.js";
+import { TYPEUNITS, COLORS, BREAKPOINTS, TYPESTYLES } from "../utils/css-variables.js";
 
-const variables = require("../utils/css-variables.js");
-const modularScale = require("../utils/typography/modular-scale.js");
+/* TODO: Update spacing values to use fluid type. * /
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
   :root {
-    --font-body-small: ${variables.TYPEUNITS.bodyFont.small}rem;
-    --font-body-large: ${variables.TYPEUNITS.bodyFont.large}rem;
+    --font-body-small:        ${pxToRem(TYPEUNITS.bodyFont.small)}rem;
+    --font-body-large:        ${pxToRem(TYPEUNITS.bodyFont.large)}rem;
     --font-family-fallback:   -apple-system, system-ui, blinkmacsystemfont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans';
     --font-family-serif:      'Source Serif Pro', 'Georgia', 'Times New Roman';
     --font-family-sans:       'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-family-mono:       'Source Code Pro', Apercu, 'Fira Mono', Courier, monospace;
     --font-weight-bold:       800;
 
-    --color-neutral-lightest: ${variables.COLORS.neutral.lightest};
-    --color-neutral-lighter:  ${variables.COLORS.neutral.lighter};
-    --color-neutral-light:    ${variables.COLORS.neutral.light};
-    --color-neutral-dark:     ${variables.COLORS.neutral.dark};
-    --color-neutral-darker:   ${variables.COLORS.neutral.darker};
-    --color-neutral-darkest:  ${variables.COLORS.neutral.darkest};
+    --color-neutral-lightest: ${COLORS.neutral.lightest};
+    --color-neutral-lighter:  ${COLORS.neutral.lighter};
+    --color-neutral-light:    ${COLORS.neutral.light};
+    --color-neutral-dark:     ${COLORS.neutral.dark};
+    --color-neutral-darker:   ${COLORS.neutral.darker};
+    --color-neutral-darkest:  ${COLORS.neutral.darkest};
 
-    --color-primary-base:     ${variables.COLORS.primary.base};
-    --color-success-base:     ${variables.COLORS.success.base};
+    --color-primary-base:     ${COLORS.primary.base};
+    --color-success-base:     ${COLORS.success.base};
 
     --border-radius-base:     4px;
     --letter-spacing:         0.05em;
@@ -41,7 +42,7 @@ injectGlobal`
     --column-gap:       var(--spacing-small);
   }
 
-  @media screen and (min-width: ${variables.BREAKPOINTS.medium}rem) {
+  @media screen and (min-width: ${BREAKPOINTS.medium}rem) {
     :root {
       --spacing-base:   1rem;
       --spacing-large:  1rem;
@@ -50,7 +51,7 @@ injectGlobal`
     }
   }
 
-  @media screen and (min-width: ${variables.BREAKPOINTS.large}rem) {
+  @media screen and (min-width: ${BREAKPOINTS.large}rem) {
     :root {
       --spacing-base:   1rem;
       --spacing-large:  1rem;
@@ -139,7 +140,7 @@ injectGlobal`
 
   body {
     font-family: var(--font-family-fallback);
-    ${variables.TYPESTYLES.base}
+    ${TYPESTYLES.base}
   }
 
   *::selection {

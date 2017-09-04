@@ -6,6 +6,8 @@ const variables = require("../css-variables.js");
 export default function getLineHeight(fontSize) {
   const baseFontSize = variables.TYPEUNITS.bodyFont.small;
   const baseLineHeight = variables.TYPEUNITS.bodyFont.lineHeight;
+
+  // @parameters "quarter" or "half"
   const roundToNearestLine = "quarter";
   const minLinePadding = 2;
 
@@ -26,8 +28,10 @@ export default function getLineHeight(fontSize) {
 
   const length = line * baseLineHeight;
 
-  let rhythmLength = length / fontSizeInPx ;
+  const rhythmLength = length / fontSizeInPx;
 
-  return rhythmLength;
+  const rhythmLengthRounded = Math.floor(rhythmLength * 100) / 100;
+
+  return rhythmLengthRounded;
 
 }

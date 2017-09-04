@@ -3,6 +3,13 @@ import pxToRem from "../px-to-rem.js";
 
 const variables = require("../css-variables.js");
 
+/* TODO: Allow this to accept a spacing scale, not just type scale.
+ * As of now, it only looks for type size and scales.
+ * The function should take any predefined scale                             */
+
+/* PARAMETERS
+ * direction: integer (e.g. 1, -2, 4)
+ * scale:     string  (e.g. 'small' || 'large')                               */
 export default function getModularScale(direction, scale) {
   let fontSize = variables.TYPEUNITS.bodyFont.small;
   let typeScale = variables.TYPEUNITS.typeScale.small;
