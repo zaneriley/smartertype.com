@@ -8,25 +8,29 @@ const variables = require("../css-variables.js");
  * The function should take any predefined scale                             */
 
 /* PARAMETERS
- * direction: integer (e.g. 1, -2, 4)
- * scale:     string  (e.g. 'small' || 'large')                               */
+
+ * type:  boolean (e.g. type  || spacing)
+ * size: boolean (e.g. small || large)
+ * direction:  integer (e.g. 1, -2, 4)                                        */
 export default function getModularScale(direction, scale) {
-  let fontSize = variables.TYPEUNITS.bodyFont.small;
-  let typeScale = variables.TYPEUNITS.typeScale.small;
   let modularSize = modularSize;
 
+  let baseSize = variables.TYPEUNITS.bodyFont.small;
+  let typescale = variables.TYPEUNITS.typographyScale.small;
+
   if (scale === 'large') {
-    fontSize = variables.TYPEUNITS.bodyFont.large;
-    typeScale = variables.TYPEUNITS.typeScale.large;
+    baseSize = variables.TYPEUNITS.bodyFont.large;
+    typescale = variables.TYPEUNITS.typographyScale.large;
   }
 
   if (direction < 0) {
-    modularSize = fontSize / typeScale * direction * -1;
+    modularSize = baseSize / typescale * direction * -1;
   } else if (direction === 0) {
-    modularSize = fontSize;
+    modularSize = baseSize;
   } else if (direction > 0) {
-    modularSize = Math.pow(typeScale, direction) * fontSize;
+    modularSize = Math.pow(typescale, direction) * baseSize;
   }
+
 
   const valueInPX = Math.floor(modularSize);
   const valueInREM = pxToRem(valueInPX);

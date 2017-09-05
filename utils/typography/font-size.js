@@ -13,13 +13,15 @@ export default function getFontSize(int) {
   const mediumBreakPoint = variables.BREAKPOINTS.medium;
   const largeBreakPoint  = variables.BREAKPOINTS.large;
 
+  console.log(fontSizeSmall + ' small');
+  console.log(fontSizeSmall + ' large');
   return `
     font-size: ${fontSizeSmall}rem;
     line-height: ${lineHeight};
-    @media screen and (min-width: ${mediumBreakPoint}rem) {
+    @media screen and (min-width: ${mediumBreakPoint}px) {
       font-size: ${fluidType};
     }
-    @media screen and (min-width: ${largeBreakPoint}rem) {
+    @media screen and (min-width: ${largeBreakPoint}px) {
       font-size: ${fontSizeLarge}rem;
     }
   ` ;

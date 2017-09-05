@@ -18,11 +18,11 @@ export const TYPEUNITS = {
     large: 19,
     lineHeight: 28
   },
-  typeScale: {
+  typographyScale: {
     small: 1.2,
     large: 1.5
   },
-  spaceScale: {
+  spacingScale: {
     small: 1.5,
     large: 2
   }
