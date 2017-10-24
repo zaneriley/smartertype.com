@@ -6,15 +6,13 @@ const variables = require("../css-variables.js");
 
 export default function getFontSize(int) {
 
-  const fontSizeSmall    = getModularScale(int, 'small');
-  const fontSizeLarge    = getModularScale(int, 'large');
+  const fontSizeSmall    = getModularScale('typography', 'small', int);
+  const fontSizeLarge    = getModularScale('typography', 'large', int);
   const lineHeight       = getLineHeight(fontSizeSmall);
   const fluidType        = getFluidType(fontSizeSmall, fontSizeLarge);
   const mediumBreakPoint = variables.BREAKPOINTS.medium;
   const largeBreakPoint  = variables.BREAKPOINTS.large;
 
-  console.log(fontSizeSmall + ' small');
-  console.log(fontSizeSmall + ' large');
   return `
     font-size: ${fontSizeSmall}rem;
     line-height: ${lineHeight};

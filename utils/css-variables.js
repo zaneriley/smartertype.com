@@ -1,4 +1,6 @@
-import getFontSize from "./typography/font-size.js";
+import getFontSize from "./typography/font-size";
+import getModularScale from "./typography/modular-scale";
+import getLineHeight from "./typography/line-height";
 
 // minScreen, maxScreen, and units are optional
 export const BREAKPOINTS = {
@@ -14,13 +16,13 @@ export const BREAKPOINTS = {
  * You should be able to update ONLY these numbers to get a new type system */
 export const TYPEUNITS = {
   bodyFont: {
-    small: 19,
-    large: 19,
+    small: 18,
+    large: 18,
     lineHeight: 28
   },
   typographyScale: {
-    small: 1.2,
-    large: 1.5
+    small: 1.38,
+    large: 1.618
   },
   spacingScale: {
     small: 1.5,
@@ -30,7 +32,8 @@ export const TYPEUNITS = {
 
 export const TYPESTYLES = {
   small: `
-    ${getFontSize(-1)}
+     font-size: ${getModularScale('typography', 'small', -1)}rem;
+     line-height: ${getLineHeight(getModularScale('typography', 'small', -1))};
      font-weight: var(--font-weight-bold);
      font-feature-settings: c2sc, 'smcp';
      text-transform: uppercase;
@@ -58,29 +61,21 @@ export const TYPESTYLES = {
     `
 };
 
-// export const SPACING = {
-//   smaller: `${getModularScale(-2, 'small', spacing)}`,
-//   small:   `${getModularScale(-1, 'small', spacing)}`,
-//   medium:  `${getModularScale(0, 'small', spacing)}`,
-//   large:   `${getModularScale(1, 'small', spacing)}`,
-//   larger:  `${getModularScale(2, 'small', spacing)}`,
-// }
-
 export const COLORS = {
   neutral: {
     lightest: `#ffffff`,
-    lighter: `#f8f8ff`,
-    light: `#f0f0f6`,
-    dark: `#adb7d8`,
-    darker: `#747f8d`,
-    darkest: `#000000`
+    lighter:  `#f8f8ff`,
+    light:    `#f0f0f6`,
+    dark:     `#adb7d8`,
+    darker:   `#747f8d`,
+    darkest:  `#000000`
   },
 
   primary: {
-    base: `#5849fe`
+    base:     `#5849fe`
   },
 
   success: {
-    base: `#00E3AB`
+    base:     `#00E3AB`
   }
 };

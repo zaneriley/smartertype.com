@@ -9,29 +9,29 @@ export default function getLineHeight(fontSize) {
 
   // @parameters "quarter" or "half"
   const roundToNearestLine = "quarter";
-  const minLinePadding = 2;
+  const minLinePadding = 1;
 
   const fontSizeInPx = fontSize * 16;
+  // 28 - 29 = -1
+  let line = baseLineHeight - fontSizeInPx;
 
-  let line = Math.ceil(4 * fontSizeInPx / baseLineHeight) / 4;
+  console.log(line);
 
-  if (line <= 0.5) {
-  } else if (line * baseLineHeight - baseFontSize < minLinePadding * 2) {
-    if (roundToNearestLine === "quarter") {
-      line += 0.25;
-    } else if (roundToNearestLine === "half") {
-      line += 0.5;
-    } else {
-      line += 1;
-    }
-  }
+  /* @TODO Figure out line-height so it mathematically resembles sketch files */
+  // if (line <= 0.25) {
+  // } else if (line * baseLineHeight - baseFontSize < minLinePadding * 2) {
+  //   if (roundToNearestLine === "quarter") {
+  //     line += 0.25;
+  //   } else if (roundToNearestLine === "half") {
+  //     line += 0.5;
+  //   } else {
+  //     line += 1;
+  //   }
+  // }
 
   const length = line * baseLineHeight;
-
-  const rhythmLength = length / fontSizeInPx;
-
+  const rhythmLength = Math.round(length) / fontSizeInPx;
   const rhythmLengthRounded = Math.floor(rhythmLength * 100) / 100;
 
   return rhythmLengthRounded;
-
 }

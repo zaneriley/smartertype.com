@@ -1,7 +1,9 @@
 import Head from "next/head";
 import { injectGlobal } from "styled-components";
-import pxToRem from "../utils/px-to-rem.js";
-import { TYPEUNITS, COLORS, BREAKPOINTS, TYPESTYLES } from "../utils/css-variables.js";
+import pxToRem from "../utils/px-to-rem";
+import { BREAKPOINTS, TYPEUNITS, TYPESTYLES, COLORS } from "../utils/css-variables";
+import getModularScale from "../utils/typography/modular-scale";
+import getFluidType from "../utils/typography/fluid-type";
 
 /* TODO: Update spacing values to use fluid type. * /
 
@@ -34,28 +36,28 @@ injectGlobal`
     --optical-adjustment-base:    0.5rem;
     --optical-adjustment-large:   0.75rem;
 
-    --spacing-smaller:  1rem;
-    --spacing-small:    1rem;
-    --spacing-base:     1rem;
-    --spacing-large:    1rem;
-    --spacing-larger:   1rem;
+    --spacing-smaller:  ${getModularScale('spacing', 'small', -2,)}rem;
+    --spacing-small:    ${getModularScale('spacing', 'small', -1,)}rem;
+    --spacing-base:     ${getModularScale('spacing', 'small', 0,)}rem;
+    --spacing-large:    ${getModularScale('spacing', 'small', 1,)}rem;
+    --spacing-larger:   ${getModularScale('spacing', 'small', 2,)}rem;
     --column-gap:       var(--spacing-small);
   }
 
-  @media screen and (min-width: ${BREAKPOINTS.medium}rem) {
+  @media screen and (min-width: ${BREAKPOINTS.medium}px) {
     :root {
-      --spacing-base:   1rem;
-      --spacing-large:  1rem;
-      --spacing-larger: 1rem;
+      --spacing-base:   ${getFluidType(getModularScale('spacing', 'small', 0,), getModularScale('spacing', 'large', 0,))};
+      --spacing-large:  ${getFluidType(getModularScale('spacing', 'small', 1,), getModularScale('spacing', 'large', 1,))};
+      --spacing-larger: ${getFluidType(getModularScale('spacing', 'small', 2,), getModularScale('spacing', 'large', 2,))};
       --column-gap:     var(--spacing-large);
     }
   }
 
-  @media screen and (min-width: ${BREAKPOINTS.large}rem) {
+  @media screen and (min-width: ${BREAKPOINTS.large}px) {
     :root {
-      --spacing-base:   1rem;
-      --spacing-large:  1rem;
-      --spacing-larger: 1rem;
+      --spacing-base:   ${getModularScale('spacing', 'large', 0,)}rem;
+      --spacing-large:  ${getModularScale('spacing', 'large', 1,)}rem;
+      --spacing-larger: ${getModularScale('spacing', 'large', 2,)}rem;
     }
   }
 
