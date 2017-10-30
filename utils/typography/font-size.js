@@ -1,6 +1,7 @@
 import getModularScale from "./modular-scale.js";
 import getLineHeight from "./line-height.js";
 import getFluidType from "./fluid-type.js";
+import pxToRem from "../px-to-rem.js";
 
 const variables = require("../css-variables.js");
 
@@ -13,14 +14,17 @@ export default function getFontSize(int) {
   const mediumBreakPoint = variables.BREAKPOINTS.medium;
   const largeBreakPoint  = variables.BREAKPOINTS.large;
 
-  return `
+  return ` 
+    --distanceBottom: (var(--fm-descender));
+    --distanceTop: (var(--fm-ascender) - var(--fm-capitalHeight));
+    
     font-size: ${fontSizeSmall}rem;
-    line-height: ${lineHeight};
+
     @media screen and (min-width: ${mediumBreakPoint}px) {
       font-size: ${fluidType};
     }
     @media screen and (min-width: ${largeBreakPoint}px) {
       font-size: ${fontSizeLarge}rem;
     }
-  ` ;
+  `;
 };

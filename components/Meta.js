@@ -5,10 +5,62 @@ import { BREAKPOINTS, TYPEUNITS, TYPESTYLES, COLORS } from "../utils/css-variabl
 import getModularScale from "../utils/typography/modular-scale";
 import getFluidType from "../utils/typography/fluid-type";
 
+import sourceSansProRegular from "../assets/fonts/source-sans-pro-regular.woff";
+import sourceSansProBold from "../assets/fonts/source-sans-pro-bold.woff";
+
+import sourceSerifProRegular from "../assets/fonts/source-serif-pro-regular.woff";
+import sourceSerifProBlack from "../assets/fonts/source-serif-pro-black.woff";
+
+import sourceCodeProRegular from "../assets/fonts/source-code-pro-regular.woff";
+import sourceCodeProBold from "../assets/fonts/source-code-pro-bold.woff";
+
 /* TODO: Update spacing values to use fluid type. * /
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: local('Source Sans Pro'), url(${sourceSansProRegular}) format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Source Sans Pro';
+    src: local('Source Sans Pro'), url(${sourceSansProBold}) format('woff');
+    font-weight: 800;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Source Serif Pro';
+    src: local('Source Serif Pro'), url(${sourceSerifProRegular}) format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Source Serif Pro';
+    src: local('Source Serif Pro'), url(${sourceSerifProBlack}) format('woff');
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro'), url(${sourceCodeProRegular}) format('woff');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Source Code Pro';
+    src: local('Source Code Pro'), url(${sourceCodeProBold}) format('woff');
+    font-weight: 900;
+    font-style: normal;
+  }
+
   :root {
     --font-body-small:        ${pxToRem(TYPEUNITS.bodyFont.small)}rem;
     --font-body-large:        ${pxToRem(TYPEUNITS.bodyFont.large)}rem;
@@ -16,7 +68,7 @@ injectGlobal`
     --font-family-serif:      'Source Serif Pro', 'Georgia', 'Times New Roman';
     --font-family-sans:       'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-family-mono:       'Source Code Pro', Apercu, 'Fira Mono', Courier, monospace;
-    --font-weight-bold:       800;
+    --font-weight-bold:       900;
 
     --color-neutral-lightest: ${COLORS.neutral.lightest};
     --color-neutral-lighter:  ${COLORS.neutral.lighter};
@@ -30,11 +82,6 @@ injectGlobal`
 
     --border-radius-base:     4px;
     --letter-spacing:         0.05em;
-
-    --optical-adjustment-smaller: 0.25rem;
-    --optical-adjustment-small:   0.35rem;
-    --optical-adjustment-base:    0.5rem;
-    --optical-adjustment-large:   0.75rem;
 
     --spacing-smaller:  ${getModularScale('spacing', 'small', -2,)}rem;
     --spacing-small:    ${getModularScale('spacing', 'small', -1,)}rem;
@@ -61,88 +108,32 @@ injectGlobal`
     }
   }
 
-  @font-face {
-    font-family: 'Source Sans Pro';
-    src: local('Source Sans Pro'), url(./assets/fonts/source-sans-pro-regular.woff) format('woff');
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Source Sans Pro';
-    src: local('Source Sans Pro'), url(./assets/fonts/source-sans-pro-bold.woff) format('woff');
-    font-weight: 800;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Source Serif Pro';
-    src: local('Source Serif Pro'), url(./assets/fonts/source-serif-pro-regular.woff) format('woff');
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Source Serif Pro';
-    src: local('Source Serif Pro'), url(./assets/fonts/source-serif-pro-black.woff) format('woff');
-    font-weight: 900;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Source Code Pro';
-    src: local('Source Code Pro'), url(./assets/fonts/source-code-pro-regular.woff) format('woff');
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'Source Code Pro';
-    src: local('Source Code Pro'), url(./assets/fonts/source-code-pro-bold.woff) format('woff');
-    font-weight: 800;
-    font-style: normal;
-  }
-
   * {
     margin: 0;
   }
 
   * + * {
-    margin-top: var(--spacing-base);
+    margin-top: var(--spacing-large);
   }
 
   *:focus {
     outline: 4px solid #00defd;
   }
 
-  /* Experimental spacing properties */
-  * + fieldset,
-  * + pre,
-  * + hr,
-  h1 + div,
-  h2 + div,
-  h3 + div,
-  h4 + div,
-  blockquote + div,
-  p + div {
-    margin-top: calc(var(--spacing-base) + var(--optical-adjustment-base));
-  }
-
   html,
   body {
     width: 100%;
     min-height: 100vh;
+    margin: 0;
   }
 
   html {
     font-size: 100%;
     font-kerning: normal;
-    -webkit-font-smoothing: subpixel-antialiased;
   }
 
   body {
     font-family: var(--font-family-fallback);
-    ${TYPESTYLES.base}
   }
 
   *::selection {
@@ -150,7 +141,7 @@ injectGlobal`
   }
 
   .wfLoadedSourceSerifPro {
-    font-family: var(--font-family-sans);
+    font-family: var(--font-family-serif);
   }
 
   pre {
