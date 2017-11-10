@@ -56,7 +56,9 @@ export const TYPEUNITS = {
 
 export const TYPESTYLES = {
   small: `
-      font-size: ${getModularScale('typography', 'small', -1)}rem;
+      --distanceBottom: (var(--fm-descender));
+      --distanceTop: (var(--fm-ascender) - var(--fm-capitalHeight));
+      font-size: ${getModularScale("typography", "small", -1)}rem;
       line-height: 1.07;
       line-height: calc(((var(--line-height) * var(--capital-height)) - var(--valign)) * 1px);
       font-family: var(--font);
@@ -69,42 +71,50 @@ export const TYPESTYLES = {
   base: `
       ${getFontSize(0)}
       font-family: var(--font);
+      --line-height: 2.25;
     `,
 
   large: `
       ${getFontSize(1)}
       font-family: var(--font);
+      --line-height: 2.15;
     `,
 
   larger: `
       ${getFontSize(2)}
       font-family: var(--font);
       font-weight: var(--font-weight-regular);
+      --line-height: 1.8;
     `,
 
   largest: `
       ${getFontSize(3)}
       font-family: var(--font);
       font-weight: var(--font-weight-bold);
+      --line-height: 1.4;
     `
 };
 
 export const COLORS = {
   neutral: {
     lightest: `#ffffff`,
-    lighter:  `#f8f8ff`,
-    light:    `#f0f0f6`,
-    dark:     `#adb7d8`,
-    darker:   `#747f8d`,
-    darkest:  `#000000`
+    lighter: `#f8f8ff`,
+    light: `#f0f0f6`,
+    base: `#D3D8E9`,
+    dark: `#74758C`,
+    darker: `#424773`,
+    darkest: `#000000`
   },
 
   primary: {
-    base:     `#5849fe`
+    base: `#5849fe`
   },
 
   success: {
-    base:     `#00E3AB`
+    base: `#00E3AB`
   }
 };
 
+export const SHADOWS = {
+  inset: `inset 0 2px 4px 0 rgba(66,71,115,0.08)`
+};

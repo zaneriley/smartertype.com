@@ -41,6 +41,7 @@ module.exports = {
           options: {
             outputPath: "static/",
             publicPath: "/_next/",
+            name: "[name].[ext]",
             limit: 1000
           }
         }

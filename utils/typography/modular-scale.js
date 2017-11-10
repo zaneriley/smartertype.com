@@ -37,7 +37,7 @@ export default function getModularScale(typeOfScale, sizeOfScale, direction) {
   }
 
   if (direction < 0) {
-    modularSize = baseSize / scale * direction * -1;
+    modularSize = baseSize / (scale * direction) * -1;
   } else if (direction === 0) {
     modularSize = baseSize;
   } else if (direction > 0) {

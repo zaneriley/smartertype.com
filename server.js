@@ -11,8 +11,8 @@ app
   .then(() => {
     const server = express();
 
-    const staticDir = path.resolve(__dirname, "..", ".next/static")
-    server.use("/_next/static", express.static(staticDir))
+    const staticDir = path.resolve(__dirname, "..", ".next/static");
+    server.use("/_next/static", express.static(staticDir));
 
     server.get("/p/:id", (req, res) => {
       const actualPage = "/post";
@@ -20,9 +20,7 @@ app
       app.render(req, res, actualPage, queryParams);
     });
 
-    server.get("*", (req, res) => {
-      return handle(req, res);
-    });
+    server.get("*", (req, res) => handle(req, res));
 
     server.listen(3000, err => {
       if (err) throw err;

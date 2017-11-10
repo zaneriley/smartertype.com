@@ -1,43 +1,43 @@
 import React from "react";
 import styled from "styled-components";
-import { BREAKPOINTS, TYPEUNITS, TYPESTYLES, TYPEFACES, COLORS } from "../utils/css-variables";
+import {
+  BREAKPOINTS,
+  TYPEUNITS,
+  TYPESTYLES,
+  TYPEFACES,
+  COLORS
+} from "../utils/css-variables";
 import OpticalAdjustment from "./OpticalAdjustment";
 
 const Largest = styled.h1`
   display: flex;
   width: 100%;
-  ${TYPEFACES.sourceSerifPro}
-  ${TYPESTYLES.largest}
+  ${TYPEFACES.sourceSerifPro} ${TYPESTYLES.largest};
 `;
 
 const Larger = styled.h2`
   display: flex;
   width: 100%;
-  ${TYPEFACES.sourceSerifPro}
-  ${TYPESTYLES.larger}
+  ${TYPEFACES.sourceSerifPro} ${TYPESTYLES.larger};
 `;
 
 const Large = styled.h3`
   display: flex;
   width: 100%;
-  ${TYPESTYLES.large}
-  ${TYPEFACES.sourceSansPro}
+  ${TYPESTYLES.large} ${TYPEFACES.sourceSansPro};
 `;
 
 const Default = styled.p`
   display: flex;
   width: 100%;
-  ${TYPESTYLES.base}
-  ${TYPEFACES.sourceSansPro}
+  ${TYPESTYLES.base} ${TYPEFACES.sourceSansPro};
 `;
 
 const Small = styled.h4`
   display: flex;
   width: 100%;
-  ${TYPESTYLES.small}
-  ${TYPEFACES.sourceSansPro}
+  ${TYPESTYLES.small} ${TYPEFACES.sourceSansPro};
 `;
-
 
 export const H1 = props => (
   <Largest>
@@ -68,4 +68,3 @@ export const H4 = props => (
     <OpticalAdjustment>{props.children}</OpticalAdjustment>
   </Small>
 );
-
