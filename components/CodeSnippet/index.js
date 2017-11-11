@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import CopyToClipboard from "react-copy-to-clipboard";
-import { COLORS } from "../../utils/css-variables";
+import getFontSize from "../../utils/typography/font-size";
+import { COLORS, TYPEFACES } from "../../utils/css-variables";
 import { H4 } from "../Headings";
 import CopyIcon from "./Icon";
 
@@ -10,7 +11,7 @@ const Code = styled.div`
   position: relative;
   border-radius: var(--border-radius-base);
   width: 100%;
-
+ 
   & * {
     margin-top: 0;
   }
@@ -20,6 +21,7 @@ const Pre = styled.pre`
   display: block;
   width: 100%;
   font-family: var(--font-family-mono);
+  ${getFontSize(0, TYPEFACES.sourceCodePro)}
   background-color: ${COLORS.neutral.lighter};
   border-radius: var(--border-radius-base);
   white-space: pre-wrap;
@@ -30,6 +32,7 @@ const Pre = styled.pre`
   > span {
     display: table-row;
     margin-top: 0;
+
 
     &:before {
       counter-increment: line;
@@ -42,12 +45,25 @@ const Pre = styled.pre`
       text-align: right;
       user-select: none;
     }
+
+    > span {
+      padding-right: var(--spacing-small);
+    }
   }
 `;
 
-export const Line = props => (
+const StyledLine = styled.span`
+  ${props => props.indent ? `
+    display: block;
+    text-indent: 0;
+    margin-left: 2ch;
+    padding-bottom: var(--spacing-smaller);
+  ` : ``}
+`;
+
+export const Line = ({ indent, className, children}) => (
   <span>
-    <span>{props.children}</span>
+    <StyledLine indent={indent} className={className}>{children}</StyledLine>
   </span>
 );
 
@@ -55,20 +71,31 @@ const CopyButton = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
-  padding: var(--spacing-small);
+  margin: var(--spacing-smallest) 0;
+  user-select: none;
+  cursor: pointer;
+  color: var(--color-primary-base);
+  background-color: transparent;
 
-  & * {
+  > button {
+    padding: var(--spacing-smaller) var(--spacing-small);
+    border: 0;
+    color: inherit;
+    background-color: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  * {
     cursor: inherit;
   }
 
-  & button {
-    color: var(--color-primary-base);
-    border: 0;
-    background-color: transparent;
-    user-select: none;
-    cursor: pointer;
-    -webkit-apperance: none;
-    appearance: none;
+  span {
+    display: flex;
+  }
+
+  svg {
+    margin-right: 1ch;
   }
 `;
 

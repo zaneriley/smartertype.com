@@ -71,7 +71,7 @@ export const TYPESTYLES = {
   large: `
       ${getFontSize(1, TYPEFACES.sourceSansPro)}
       font-family: var(--font-family-sans);
-      font-weight: var(---font-weight-bold);
+      font-weight: var(--font-weight-bold);
       --line-height: 2.18;
     `,
 
@@ -107,6 +107,10 @@ export const COLORS = {
 
   success: {
     base: `#00E3AB`
+  },
+
+  accent: {
+    base: `#FFE3D9`
   }
 };
 

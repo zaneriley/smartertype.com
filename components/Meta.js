@@ -70,6 +70,7 @@ injectGlobal`
 
     --color-primary-base:     ${COLORS.primary.base};
     --color-success-base:     ${COLORS.success.base};
+    --color-accent-base:      ${COLORS.accent.base};
 
     --border-radius-base:     4px;
     --letter-spacing:         0.05em;
@@ -111,6 +112,7 @@ injectGlobal`
 
   * {
     margin: 0;
+    box-sizing: border-box;
   }
 
   * + * {
@@ -148,6 +150,7 @@ injectGlobal`
   sup {
     font-variant-position: super;
     font-feature-settings: "sups";
+    line-height: 1;
   }
 `;
 
