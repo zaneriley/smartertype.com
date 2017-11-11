@@ -7,7 +7,7 @@ import FontFeature from "../components/FontFeature";
 export default () => (
   <div>
     <Meta />
-    <H1>Smarter Typography that wraps when the line-length gets too long</H1>
+    <H1>Smarter <br />Typography</H1>
     <H2>This is an h2 that wraps when the line-length gets too long</H2>
     <H3>This is an h3 hi that wraps when the line-length gets too long</H3>
     <FontFeature />

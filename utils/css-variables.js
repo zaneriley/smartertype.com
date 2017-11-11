@@ -12,26 +12,23 @@ export const BREAKPOINTS = {
 
 /* Typeface-specific data, mostly used for optical adjustments. */
 export const TYPEFACES = {
-  sourceCodePro: `
-    --font: var(--font-family-mono);
-    --fm-capitalHeight: 0.66;
-    --fm-descender: 0.273;
-    --fm-ascender: 0.984;
-  `,
+  sourceCodePro: {
+    fmCapitalHeight: 0.66,
+    fmDescender: 0.273,
+    fmAscender: 0.984
+  },
 
-  sourceSansPro: `
-    --font: var(--font-family-sans);
-    --fm-capitalHeight: 0.66;
-    --fm-descender: 0.273;
-    --fm-ascender: 0.984;
-  `,
+  sourceSansPro: {
+    fmCapitalHeight: 0.66,
+    fmDescender: 0.273,
+    fmAscender: 0.984
+  },
 
-  sourceSerifPro: `
-    --font: var(--font-family-serif);
-    --fm-capitalHeight: 0.66;
-    --fm-descender: 0.273;
-    --fm-ascender: 0.984;
-  `
+  sourceSerifPro: {
+    fmCapitalHeight: 0.66,
+    fmDescender: 0.273,
+    fmAscender: 0.984
+  }
 };
 
 /* Base units of typography system.
@@ -40,8 +37,8 @@ export const TYPEFACES = {
  * You should be able to update ONLY these numbers to get a new type system */
 export const TYPEUNITS = {
   bodyFont: {
-    small: 18,
-    large: 18,
+    small: 12,
+    large: 12,
     lineHeight: 28
   },
   typographyScale: {
@@ -56,40 +53,38 @@ export const TYPEUNITS = {
 
 export const TYPESTYLES = {
   small: `
-      --distanceBottom: (var(--fm-descender));
-      --distanceTop: (var(--fm-ascender) - var(--fm-capitalHeight));
-      font-size: ${getModularScale("typography", "small", -1)}rem;
-      line-height: 1.07;
-      line-height: calc(((var(--line-height) * var(--capital-height)) - var(--valign)) * 1px);
-      font-family: var(--font);
+      ${getFontSize(-1, TYPEFACES.sourceSansPro)}
+      font-family: var(--font-family-sans);
       font-weight: var(--font-weight-bold);
       font-feature-settings: c2sc, 'smcp';
       text-transform: uppercase;
       letter-spacing: var(--letter-spacing);
+      --line-height: 1.575;
     `,
 
   base: `
-      ${getFontSize(0)}
-      font-family: var(--font);
-      --line-height: 2.25;
+      ${getFontSize(0, TYPEFACES.sourceSansPro)}
+      font-family: var(--font-family-sans);
+      --line-height: 2.355;
     `,
 
   large: `
-      ${getFontSize(1)}
-      font-family: var(--font);
-      --line-height: 2.15;
+      ${getFontSize(1, TYPEFACES.sourceSansPro)}
+      font-family: var(--font-family-sans);
+      font-weight: var(---font-weight-bold);
+      --line-height: 2.18;
     `,
 
   larger: `
-      ${getFontSize(2)}
-      font-family: var(--font);
+      ${getFontSize(2, TYPEFACES.sourceSerifPro)}
+      font-family: var(--font-family-sans);
       font-weight: var(--font-weight-regular);
-      --line-height: 1.8;
+      --line-height: 1.925;
     `,
 
   largest: `
-      ${getFontSize(3)}
-      font-family: var(--font);
+      ${getFontSize(3, TYPEFACES.sourceSerifPro)}
+      font-family: var(--font-family-serif);
       font-weight: var(--font-weight-bold);
       --line-height: 1.4;
     `

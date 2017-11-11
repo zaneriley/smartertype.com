@@ -1,33 +1,74 @@
+import pxToRem from "../px-to-rem";
 import getModularScale from "./modular-scale";
 import getLineHeight from "./line-height";
 import getFluidType from "./fluid-type";
-import { BREAKPOINTS } from "../css-variables";
+import { TYPEFACES, BREAKPOINTS } from "../css-variables";
 
-export default function getFontSize(int) {
-  const fontSizeSmall = getModularScale("typography", "small", int);
-  const fontSizeLarge = getModularScale("typography", "large", int);
-  const fluidType = getFluidType(fontSizeSmall, fontSizeLarge);
-  const mediumBreakPoint = BREAKPOINTS.medium;
-  const largeBreakPoint = BREAKPOINTS.larger;
+export default function getFontSize(int, typeface) {
+  if (!typeface) typeface = TYPEFACES.sourceSansPro;
 
-  return ` 
-    --distanceBottom: var(--fm-descender);
-    --distanceTop: calc(var(--fm-ascender) - var(--fm-capitalHeight));
-    --capital-height: calc(${fontSizeSmall * 16} * var(--fm-capitalHeight));
-    --valign: calc((var(--distanceBottom) - var(--distanceTop)) * (${fontSizeSmall *
-      16}));
-    
-    --computedFontSize: calc(var(--capital-height) / var(--fm-capitalHeight));
-    --computedLineHeight: calc(((var(--line-height) * var(--capital-height)) - var(--valign)) * 1px);
-    
-    font-size: calc((var(--computedFontSize) / 16) * 1rem);
+  const CAPITAL_HEIGHT_SMALL = getModularScale(
+    "typography",
+    "small",
+    int,
+    "px"
+  );
+  const CAPITAL_HEIGHT_LARGE = getModularScale(
+    "typography",
+    "large",
+    int,
+    "px"
+  );
+  const CAPITAL_HEIGHT_FLUID = getFluidType(
+    pxToRem(CAPITAL_HEIGHT_SMALL),
+    pxToRem(CAPITAL_HEIGHT_LARGE)
+  );
+
+
+  /* compute font-size to get capital height equal desired font-size 
+   * (e.g. 12 * 0.66 = 18)
+   */
+  const calculatedFontSize = capitalHeight =>
+    capitalHeight / typeface.fmCapitalHeight;
+
+  /* The font-size converted into REM. 
+   * (18 / 16 * 1rem = 1.125rem)
+   */
+  const FONT_SIZE_SMALL = pxToRem(calculatedFontSize(CAPITAL_HEIGHT_SMALL));
+  const FONT_SIZE_LARGE = pxToRem(calculatedFontSize(CAPITAL_HEIGHT_LARGE));
+  const FONT_SIZE_FLUID = getFluidType(FONT_SIZE_SMALL, FONT_SIZE_LARGE);
+
+  const DISTANCE_TOP = typeface.fmAscender - typeface.fmCapitalHeight;
+  const DISTANCE_BOTTOM = typeface.fmDescender;
+
+  return `   
+    font-size: var(--fontSize);
+
+    /* The specified line-height, but splits the 
+     * line-height equally above and below the text. 
+     */
     line-height: var(--computedLineHeight);
 
-    @media screen and (min-width: ${mediumBreakPoint}px) {
-      --capital-height: calc(${fluidType} * var(--fm-capitalHeight));
+    /* Units for both this element and the element's inner span
+     * to substract the invisible space caused by 
+     * the line-height in a text container. 
+     */
+    --capitalHeight:  ${CAPITAL_HEIGHT_SMALL};
+    --fontSize:       ${FONT_SIZE_SMALL}rem;
+    --computedLineHeight: calc((var(--line-height) * var(--capitalHeight)) * 1px);
+    --distanceBottom: ${DISTANCE_TOP};
+    --distanceTop:    ${DISTANCE_BOTTOM};
+
+    @media screen and (min-width: ${BREAKPOINTS.medium}px) {
+      --fontSize: ${FONT_SIZE_FLUID};
+      --capitalHeight: ${CAPITAL_HEIGHT_FLUID};
+      --computedLineHeight: calc((var(--line-height) * var(--capitalHeight)) * 1);
     }
-    @media screen and (min-width: ${largeBreakPoint}px) {
-      --capital-height: calc(${fontSizeLarge * 16} * var(--fm-capitalHeight));
+
+    @media screen and (min-width: ${BREAKPOINTS.large}px) {
+      --capitalHeight:  ${CAPITAL_HEIGHT_LARGE};
+      --fontSize: ${FONT_SIZE_LARGE}rem;
+      --computedLineHeight: calc((var(--line-height) * var(--capitalHeight)) * 1px);
     }
   `;
 }

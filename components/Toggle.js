@@ -64,9 +64,11 @@ const ToggleItem = props => (
 );
 
 const Fieldset = styled.fieldset`
+  position: relative;
   display: inline-block;
   padding: 0;
   border: 0;
+  vertical-align: middle;
 
   legend {
     color: var(--color-neutral-dark);

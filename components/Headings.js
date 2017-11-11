@@ -12,31 +12,31 @@ import OpticalAdjustment from "./OpticalAdjustment";
 const Largest = styled.h1`
   display: flex;
   width: 100%;
-  ${TYPEFACES.sourceSerifPro} ${TYPESTYLES.largest};
+  ${TYPESTYLES.largest};
 `;
 
 const Larger = styled.h2`
   display: flex;
   width: 100%;
-  ${TYPEFACES.sourceSerifPro} ${TYPESTYLES.larger};
+  ${TYPESTYLES.larger};
 `;
 
 const Large = styled.h3`
   display: flex;
   width: 100%;
-  ${TYPESTYLES.large} ${TYPEFACES.sourceSansPro};
+  ${TYPESTYLES.large};
 `;
 
 const Default = styled.p`
   display: flex;
   width: 100%;
-  ${TYPESTYLES.base} ${TYPEFACES.sourceSansPro};
+  ${TYPESTYLES.base};
 `;
 
 const Small = styled.h4`
   display: flex;
   width: 100%;
-  ${TYPESTYLES.small} ${TYPEFACES.sourceSansPro};
+  ${TYPESTYLES.small};
 `;
 
 export const H1 = props => (

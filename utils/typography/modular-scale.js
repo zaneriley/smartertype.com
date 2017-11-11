@@ -1,19 +1,22 @@
-import convertUnit from "../css-convert-unit.js";
-import pxToRem from "../px-to-rem.js";
-import { TYPEUNITS } from "../css-variables.js";
-
-/* TODO: Allow this to accept a spacing scale, not just type scale.
- * As of now, it only looks for type size and scales.
- * The function should take any predefined scale                             */
+import pxToRem from "../px-to-rem";
+import { TYPEUNITS } from "../css-variables";
 
 /* PARAMETERS
 
- * typeOfScale:      boolean (typography || spacing)
- * sizeOfScale:      boolean (small || large)
- * direction: integer                                                        */
-export default function getModularScale(typeOfScale, sizeOfScale, direction) {
+ * typeOfScale: variable (typography || spacing)
+ * sizeOfScale: variable (small || large)
+ * direction:   integer  (-1, 0, 3)
+ * unit:        string   ("px" || "rem")
+ */
+export default function getModularScale(
+  typeOfScale,
+  sizeOfScale,
+  direction,
+  unit
+) {
   if (!typeOfScale) typeOfScale = "typography";
   if (!sizeOfScale) sizeOfScale = "small";
+  if (!unit) unit = "rem";
 
   let modularSize = modularSize;
   let baseSize = baseSize;
@@ -46,6 +49,10 @@ export default function getModularScale(typeOfScale, sizeOfScale, direction) {
 
   const valueInPX = Math.round(modularSize);
   const valueInREM = pxToRem(valueInPX);
+
+  if (unit === "px") {
+    return valueInPX;
+  }
 
   return valueInREM;
 }
