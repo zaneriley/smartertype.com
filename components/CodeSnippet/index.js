@@ -11,7 +11,7 @@ const Code = styled.div`
   position: relative;
   border-radius: var(--border-radius-base);
   width: 100%;
- 
+
   & * {
     margin-top: 0;
   }
@@ -21,7 +21,7 @@ const Pre = styled.pre`
   display: block;
   width: 100%;
   font-family: var(--font-family-mono);
-  ${getFontSize(0, TYPEFACES.sourceCodePro)}
+  ${getFontSize(0, TYPEFACES.sourceCodePro)};
   background-color: ${COLORS.neutral.lighter};
   border-radius: var(--border-radius-base);
   white-space: pre-wrap;
@@ -32,7 +32,6 @@ const Pre = styled.pre`
   > span {
     display: table-row;
     margin-top: 0;
-
 
     &:before {
       counter-increment: line;
@@ -53,17 +52,22 @@ const Pre = styled.pre`
 `;
 
 const StyledLine = styled.span`
-  ${props => props.indent ? `
+  ${props =>
+    props.indent
+      ? `
     display: block;
     text-indent: 0;
     margin-left: 2ch;
     padding-bottom: var(--spacing-smaller);
-  ` : ``}
+  `
+      : ``};
 `;
 
-export const Line = ({ indent, className, children}) => (
+export const Line = ({ indent, className, children }) => (
   <span>
-    <StyledLine indent={indent} className={className}>{children}</StyledLine>
+    <StyledLine indent={indent} className={className}>
+      {children}
+    </StyledLine>
   </span>
 );
 

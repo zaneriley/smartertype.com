@@ -9,7 +9,7 @@
     "build": "next build",
     "export": "next export",
     "lint:css": "stylelint './components/**/*.js' ",
-    "lint:js": "prettier  './components/**/*.js' --write"
+    "lint:js": "prettier  './components/**/*.js' --write && prettier  './pages/**/*.js' --write && prettier  './utils/**/*.js' --write"
   },
   "keywords": [],
   "author": "",

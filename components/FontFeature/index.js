@@ -17,7 +17,7 @@ const HeadingControl = styled.div`
   .baselineAlignment {
     padding-bottom: 0 0 var(--spacing-smaller) 0;
   }
-  
+
   h3 {
     padding-bottom: var(--spacing-smaller);
   }
@@ -40,9 +40,14 @@ const FontFeature = ({}) => (
     </HeadingControl>
     <P>
       Dijkstra's algorithm is an algorithm for finding the shortest paths
-      between nodes in a graph, which may represent, for example, road
-      networks.<sup><Link href="#">(1)</Link></sup> It was conceived by computer scientist Edsger W. Dijkstra in
-      1956 and published three years later.<sup><Link href="#">(2)</Link></sup>
+      between nodes in a graph, which may represent, for example, road networks.
+      <sup>
+        <Link href="#">(1)</Link>
+      </sup>{" "}
+      It was conceived by computer scientist Edsger W. Dijkstra in 1956 and
+      published three years later.<sup>
+        <Link href="#">(2)</Link>
+      </sup>
     </P>
     <CodeSnippet>
       <Line>{`blockquote {`}</Line>

@@ -9,19 +9,19 @@ const StyledGrid = styled.div`
   padding: 0 var(--column-gap);
   grid-template-columns: repeat(12, 1fr);
   grid-column-gap: var(--column-gap);
-  
-  ${props => props.left ? `
+
+  ${props =>
+    props.left
+      ? `
     position: fixed;
     top: 0;
     left: 0;
     padding-left: 0;
-    transform: ${props => props.transform ? `translateX(-100%);` : ``};
+    transform: ${props => (props.transform ? `translateX(-100%);` : ``)};
     /* Hack to have two grids look like one */
     pointer-events: none;
     `
-    : ``}
-
-  > * {
+      : ``} > * {
     margin-top: 0;
   }
 `;
@@ -29,7 +29,10 @@ const StyledGrid = styled.div`
 export const Main = styled.main`
   grid-column: span 6 / 12;
 
-  transform: ${props => props.transform ? `translateX(calc((var(--column-gap) * 2 + calc(100% * 2/12)) * -1));` : ``};
+  transform: ${props =>
+    props.transform
+      ? `translateX(calc((var(--column-gap) * 2 + calc(100% * 2/12)) * -1));`
+      : ``};
   > * {
     margin-top: var(--spacing-larger);
   }
@@ -49,7 +52,9 @@ export const Sidebar = styled.aside`
 `;
 
 export const Grid = ({ className, children, left }) => (
-  <StyledGrid className={className} left={left}>{children}</StyledGrid>
+  <StyledGrid className={className} left={left}>
+    {children}
+  </StyledGrid>
 );
 
 Grid.PropTypes = {

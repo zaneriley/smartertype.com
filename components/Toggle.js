@@ -1,8 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { BREAKPOINTS, TYPEUNITS, TYPESTYLES, TYPEFACES, COLORS, SHADOWS } from "../utils/css-variables";
+import {
+  BREAKPOINTS,
+  TYPEUNITS,
+  TYPESTYLES,
+  TYPEFACES,
+  COLORS,
+  SHADOWS
+} from "../utils/css-variables";
 import { H4 } from "./Headings.js";
-
 
 const ToggleWrapper = styled.div`
   border: 1px solid ${COLORS.neutral.base};
@@ -15,7 +21,6 @@ const ToggleWrapper = styled.div`
 `;
 
 const ToggleLabel = styled.label`
-
   & input {
     border: 0;
     clip: rect(0 0 0 0);
@@ -36,7 +41,7 @@ const ToggleLabel = styled.label`
     padding: var(--spacing-smaller);
     color: ${COLORS.primary.base};
   }
-  
+
   & input:not(:checked) + span {
     background: ${COLORS.neutral.lightest};
   }
@@ -53,10 +58,7 @@ const ToggleLabel = styled.label`
 
 const ToggleItem = props => (
   <ToggleLabel>
-    <input
-      type="radio" 
-      name="name" 
-      value={props.label} />
+    <input type="radio" name="name" value={props.label} />
     <span>
       <H4>{props.label}</H4>
     </span>
