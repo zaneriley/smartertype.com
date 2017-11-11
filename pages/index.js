@@ -21,27 +21,39 @@ const Footer = styled.footer`
 
 export default () => (
   <div>
-  <Meta />
-  <Grid left>
-    <Sidebar>
-      <Nav>
-        <H1>Smarter <br />Typography</H1>
-        <HR />
-        <P>Check which typographic features your font supports. Don’t worry, your fonts aren’t stored. Everything happens in your browser.
-        </P>
-      </Nav>
-      <Footer>
-        <H4><Link href="https://twitter.com/zaneriley" rel="noopener" target="_blank">Made by @zaneriley</Link></H4>
-      </Footer>
-    </Sidebar>
+    <Meta />
+    <Grid left>
+      <Sidebar>
+        <Nav>
+          <H1>
+            Smarter <br />Typography
+          </H1>
+          <HR />
+          <P>
+            Check which typographic features your font supports. Don’t worry,
+            your fonts aren’t stored. Everything happens in your browser.
+          </P>
+        </Nav>
+        <Footer>
+          <H4>
+            <Link
+              href="https://twitter.com/zaneriley"
+              rel="noopener"
+              target="_blank"
+            >
+              Made by @zaneriley
+            </Link>
+          </H4>
+        </Footer>
+      </Sidebar>
     </Grid>
-  <Grid>
-    <Main>
-      <FontFeature />
-      <FontFeature />
-      <FontFeature />
-      <FontFeature />
-    </Main>
-  </Grid>
+    <Grid>
+      <Main>
+        <FontFeature />
+        <FontFeature />
+        <FontFeature />
+        <FontFeature />
+      </Main>
+    </Grid>
   </div>
 );

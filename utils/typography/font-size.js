@@ -24,7 +24,6 @@ export default function getFontSize(int, typeface) {
     pxToRem(CAPITAL_HEIGHT_LARGE)
   );
 
-
   /* compute font-size to get capital height equal desired font-size 
    * (e.g. 12 * 0.66 = 18)
    */

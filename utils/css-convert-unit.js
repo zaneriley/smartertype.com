@@ -3,15 +3,14 @@
 // Ported from Kyle Matthew's https://github.com/KyleAMathews/convert-css-length
 
 export const parseUnit = (str, out) => {
-    if (!out)
-        out = [ 0, '' ]
+  if (!out) out = [0, ""];
 
-    str = String(str)
-    var num = parseFloat(str, 10)
-    out[0] = num
-    out[1] = str.match(/[\d.\-\+]*\s*(.*)/)[1] || ''
-    return out
-}
+  str = String(str);
+  var num = parseFloat(str, 10);
+  out[0] = num;
+  out[1] = str.match(/[\d.\-\+]*\s*(.*)/)[1] || "";
+  return out;
+};
 
 const baseFontSize = "16px";
 
@@ -38,15 +37,28 @@ const unitLess = length => parseUnit(length)[0];
 //   For converting to relative units, the absolute length in px to which the
 //   output value will refer. Defaults to the same as fromContext, since it is
 //   rarely needed.
-export default function convertUnit(baseFontSize, toUnit, fromContext, toContext) {
-  if (baseFontSize == null) { baseFontSize = baseFontSize; }
+export default function convertUnit(
+  baseFontSize,
+  toUnit,
+  fromContext,
+  toContext
+) {
+  if (baseFontSize == null) {
+    baseFontSize = baseFontSize;
+  }
   return function(length, toUnit, fromContext, toContext) {
-    if (fromContext == null) { fromContext = baseFontSize; }
-    if (toContext == null) { toContext = fromContext; }
+    if (fromContext == null) {
+      fromContext = baseFontSize;
+    }
+    if (toContext == null) {
+      toContext = fromContext;
+    }
     const fromUnit = unit(length);
 
     // Optimize for cases where `from` and `to` units are accidentally the same.
-    if (fromUnit === toUnit) { return length; }
+    if (fromUnit === toUnit) {
+      return length;
+    }
 
     // Convert input length to pixels.
     let pxLength = unitLess(length);
@@ -70,13 +82,11 @@ in pixel units.`);
         pxLength = unitLess(length) * unitLess(fromContext) * 2;
       } else if (["ch", "vw", "vh", "vmin"].includes(fromUnit)) {
         console.warn(`${fromUnit} units can't be reliably converted; Returning \
-original value.`
-        );
+original value.`);
         return length;
       } else {
         console.warn(`${fromUnit} is an unknown or unsupported length unit; \
-Returning original value.`
-        );
+Returning original value.`);
         return length;
       }
     }
@@ -85,24 +95,22 @@ Returning original value.`
     let outputLength = pxLength;
     if (toUnit !== "px") {
       if (toUnit === "em") {
-        outputLength = (pxLength / unitLess(toContext));
+        outputLength = pxLength / unitLess(toContext);
       } else if (toUnit === "rem") {
-        outputLength = (pxLength / unitLess(baseFontSize));
+        outputLength = pxLength / unitLess(baseFontSize);
       } else if (toUnit === "ex") {
-        outputLength = (pxLength / unitLess(toContext) / 2);
+        outputLength = pxLength / unitLess(toContext) / 2;
       } else if (["ch", "vw", "vh", "vmin"].includes(toUnit)) {
         console.warn(`${toUnit} units can't be reliably converted; Returning \
-original value.`
-        );
+original value.`);
         return length;
       } else {
         console.warn(`${toUnit} is an unknown or unsupported length unit; \
-Returning original value.`
-        );
+Returning original value.`);
         return length;
       }
     }
 
     return parseFloat(outputLength.toFixed(5)) + toUnit;
   };
-};
+}
