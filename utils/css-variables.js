@@ -57,6 +57,7 @@ export const TYPESTYLES = {
       font-family: var(--font-family-sans);
       font-weight: var(--font-weight-bold);
       font-feature-settings: c2sc, 'smcp';
+      font-variant: all-small-caps;
       text-transform: uppercase;
       letter-spacing: var(--letter-spacing);
       --line-height: 1.575;

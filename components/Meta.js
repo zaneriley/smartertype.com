@@ -5,7 +5,7 @@ import { BREAKPOINTS, TYPEUNITS, COLORS } from "../utils/css-variables";
 import getModularScale from "../utils/typography/modular-scale";
 import getFluidType from "../utils/typography/fluid-type";
 
-/* TODO: Update spacing values to use fluid type. * /
+const BASE_LINE_UNIT = pxToRem(TYPEUNITS.bodyFont.lineHeight);
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
@@ -64,6 +64,7 @@ injectGlobal`
     --color-neutral-lightest: ${COLORS.neutral.lightest};
     --color-neutral-lighter:  ${COLORS.neutral.lighter};
     --color-neutral-light:    ${COLORS.neutral.light};
+    --color-neutral-base:     ${COLORS.neutral.base};
     --color-neutral-dark:     ${COLORS.neutral.dark};
     --color-neutral-darker:   ${COLORS.neutral.darker};
     --color-neutral-darkest:  ${COLORS.neutral.darkest};
@@ -75,10 +76,10 @@ injectGlobal`
     --border-radius-base:     4px;
     --letter-spacing:         0.05em;
 
-    --spacing-smallest:  ${getModularScale("spacing", "small", -3)}rem;
-    --spacing-smaller:  ${getModularScale("spacing", "small", -2)}rem;
-    --spacing-small:    ${getModularScale("spacing", "small", -1)}rem;
-    --spacing-base:     ${getModularScale("spacing", "small", 0)}rem;
+    --spacing-smallest: ${BASE_LINE_UNIT / 8}rem;
+    --spacing-smaller:  ${BASE_LINE_UNIT / 4}rem;
+    --spacing-small:    ${BASE_LINE_UNIT / 2}rem;
+    --spacing-base:     ${BASE_LINE_UNIT}rem;
     --spacing-large:    ${getModularScale("spacing", "small", 1)}rem;
     --spacing-larger:   ${getModularScale("spacing", "small", 2)}rem;
     --column-gap:       var(--spacing-small);
@@ -133,6 +134,7 @@ injectGlobal`
   html {
     font-size: 100%;
     font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
   }
 
   body {
@@ -147,11 +149,6 @@ injectGlobal`
     font-family: var(--font-family-serif);
   }
 
-  sup {
-    font-variant-position: super;
-    font-feature-settings: "sups";
-    line-height: 1;
-  }
 `;
 
 export default () => (

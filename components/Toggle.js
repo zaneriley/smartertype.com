@@ -1,14 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-import {
-  BREAKPOINTS,
-  TYPEUNITS,
-  TYPESTYLES,
-  TYPEFACES,
-  COLORS,
-  SHADOWS
-} from "../utils/css-variables";
-import { H4 } from "./Headings.js";
+import { COLORS, SHADOWS } from "../utils/css-variables";
+import { H4 } from "./Headings";
 
 const ToggleWrapper = styled.div`
   border: 1px solid ${COLORS.neutral.base};
@@ -37,8 +31,11 @@ const ToggleLabel = styled.label`
   }
 
   & > span {
-    display: inline-block;
-    padding: var(--spacing-smaller);
+    display: inline-flex;
+    height: var(--spacing-base);
+    align-items: center;
+    padding-right: var(--spacing-small);
+    padding-left: var(--spacing-small);
     color: ${COLORS.primary.base};
   }
 
@@ -56,11 +53,11 @@ const ToggleLabel = styled.label`
   }
 `;
 
-const ToggleItem = props => (
+const ToggleItem = ({ name, label }) => (
   <ToggleLabel>
-    <input type="radio" name="name" value={props.label} />
+    <input type="radio" name={name} value={label} />
     <span>
-      <H4>{props.label}</H4>
+      <H4>{label}</H4>
     </span>
   </ToggleLabel>
 );
@@ -77,17 +74,30 @@ const Fieldset = styled.fieldset`
   }
 `;
 
-const Toggle = () => (
-  <Fieldset>
-    <legend>
-      <H4>Display Options</H4>
-    </legend>
-    <ToggleWrapper>
-      <ToggleItem label="OpenType" checked />
-      <ToggleItem label="Browser" />
-      <ToggleItem label="Reset" />
-    </ToggleWrapper>
-  </Fieldset>
-);
+export default class Toggle extends React.Component {
+  render() {
+    const { name } = this.props;
 
-export default Toggle;
+    return (
+      <Fieldset>
+        <legend>
+          <H4>Display Options</H4>
+        </legend>
+        <ToggleWrapper>
+          <ToggleItem label="OpenType" name={name} checked />
+          <ToggleItem label="Browser" name={name} />
+          <ToggleItem label="Reset" name={name} />
+        </ToggleWrapper>
+      </Fieldset>
+    );
+  }
+}
+
+Toggle.propTypes = {
+  name: PropTypes.string.isRequired
+};
+
+ToggleItem.propTypes = {
+  label: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
+};

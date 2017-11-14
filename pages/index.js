@@ -4,7 +4,7 @@ import Meta from "../components/Meta";
 import { H1, H2, H3, H4, P } from "../components/Headings";
 import { Grid, Main, Sidebar } from "../components/Grid";
 import Link from "../components/Link";
-import HR from "../components/HR";
+import HorizontalRule from "../components/HorizontalRule";
 import FontFeature from "../components/FontFeature";
 
 const Nav = styled.nav`
@@ -28,7 +28,7 @@ export default () => (
           <H1>
             Smarter <br />Typography
           </H1>
-          <HR />
+          <HorizontalRule />
           <P>
             Check which typographic features your font supports. Don’t worry,
             your fonts aren’t stored. Everything happens in your browser.
@@ -50,8 +50,11 @@ export default () => (
     <Grid>
       <Main>
         <FontFeature />
+        <HorizontalRule wide />
         <FontFeature />
+        <HorizontalRule wide />
         <FontFeature />
+        <HorizontalRule wide />
         <FontFeature />
       </Main>
     </Grid>

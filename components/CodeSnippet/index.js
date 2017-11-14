@@ -37,8 +37,9 @@ const Pre = styled.pre`
       counter-increment: line;
       content: counter(line);
       display: table-cell;
-      padding: var(--spacing-smaller);
-      border-right: var(--spacing-smaller) solid ${COLORS.neutral.lighter};
+      padding: var(--spacing-smaller) var(--spacing-smaller) 0
+        var(--spacing-smaller);
+      border-right: var(--spacing-small) solid ${COLORS.neutral.lighter};
       background: ${COLORS.neutral.light};
       color: ${COLORS.neutral.darker};
       text-align: right;
@@ -49,6 +50,10 @@ const Pre = styled.pre`
       padding-right: var(--spacing-small);
     }
   }
+
+  > span:last-child:before {
+    padding-bottom: var(--spacing-smaller);
+  }
 `;
 
 const StyledLine = styled.span`
@@ -58,7 +63,6 @@ const StyledLine = styled.span`
     display: block;
     text-indent: 0;
     margin-left: 2ch;
-    padding-bottom: var(--spacing-smaller);
   `
       : ``};
 `;
@@ -75,14 +79,14 @@ const CopyButton = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
-  margin: var(--spacing-smallest) 0;
+  margin: var(--spacing-smallest);
   user-select: none;
   cursor: pointer;
   color: var(--color-primary-base);
   background-color: transparent;
 
   > button {
-    padding: var(--spacing-smaller) var(--spacing-small);
+    padding: var(--spacing-small) var(--spacing-small);
     border: 0;
     color: inherit;
     background-color: transparent;

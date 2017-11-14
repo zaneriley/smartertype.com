@@ -34,7 +34,7 @@ export const Main = styled.main`
       ? `translateX(calc((var(--column-gap) * 2 + calc(100% * 2/12)) * -1));`
       : ``};
   > * {
-    margin-top: var(--spacing-larger);
+    margin-top: var(--spacing-large);
   }
 `;
 
