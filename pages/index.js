@@ -6,6 +6,7 @@ import { Grid, Main, Sidebar } from "../components/Grid";
 import Link from "../components/Link";
 import HorizontalRule from "../components/HorizontalRule";
 import FontFeature from "../components/FontFeature";
+import { Line } from "../components/CodeSnippet";
 
 const Nav = styled.nav`
   grid-column: span 5;
@@ -49,7 +50,30 @@ export default () => (
     </Grid>
     <Grid>
       <Main>
-        <FontFeature />
+        <FontFeature 
+          title="Superior Figures"
+          name="superior-figures"
+          example={
+            <P>
+              Dijkstra’s algorithm is an algorithm for finding the shortest paths
+              between nodes in a graph, which may represent, for example, road
+              networks.
+              <sup>
+                <Link href="#">1</Link>
+              </sup>{" "}
+              It was conceived by computer scientist Edsger W. Dijkstra in 1956 and
+              published three years later.
+              <sup>
+                <Link href="#">2</Link>
+              </sup>
+            </P>
+          }
+          code={[
+            <Line key="line1">{`blockquote {`}</Line>,
+            <Line indent key="line2">hanging-puntuation: first allow-end;</Line>,
+            <Line key="line3">{`}`}</Line>
+          ]}
+        />
         <HorizontalRule wide />
         <FontFeature />
         <HorizontalRule wide />

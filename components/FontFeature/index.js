@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Toggle from "../Toggle";
-import { H3, P } from "../Headings";
-import Link from "../Link";
-import CodeSnippet, { Line } from "../CodeSnippet";
+import { H3 } from "../Headings";
+import CodeSnippet from "../CodeSnippet";
 
 const HeadingControl = styled.div`
   display: flex;
@@ -55,59 +54,40 @@ const FeatureController = styled.div`
   }
 `;
 
-/* TODO: Just get the feature toggle to console log it's value on press 
- * using the parent FontFeature component. (this one)
- * 
- * After you get that done, you should get the <SuperiorFigure /> component
- * to dynamically update it's styles based off props and styled components. 
- * 
- * React's docs on Forms are pretty good, so if you get lost just look at those.
- * 
- * PS: Don't commit your code until it's in a working state. 
- *     Right now the app is broken.
- */
 export default class FontFeature extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      isOpenType: true
+      showStyling: "opentype"
     };
+
+    this.toggleFeatureDisplay = this.toggleFeatureDisplay.bind(this);
   }
 
-  toggleFeatureDisplay(value) {
-    this.setState({
-      isOpenType: !this.state.isOpenType
-    });
+  toggleFeatureDisplay(event) {
+    this.setState({ showStyling: event.target.value });
 
-    console.log(`The toggle value was ${value}`);
+    const option = event.target.value;
+ 
+    if (option === "opentype") {
+      console.log("opentype");
+    }
   }
 
   render() {
+    const { title, name, example, code } = this.props;
 
     return (
       <FeatureController>
         <HeadingControl>
-          <H3>Kerning</H3> <Toggle onChange={this.toggleFeatureDisplay} />
+          <H3>{title}</H3>
+          <Toggle onChange={this.toggleFeatureDisplay} name={name} />
         </HeadingControl>
 
-        <P>
-          Dijkstra’s algorithm is an algorithm for finding the shortest paths
-          between nodes in a graph, which may represent, for example, road
-          networks.
-          <sup>
-            <Link href="#">1</Link>
-          </sup>{" "}
-          It was conceived by computer scientist Edsger W. Dijkstra in 1956 and
-          published three years later.<sup>
-            <Link href="#">2</Link>
-          </sup>
-        </P>
-        <CodeSnippet>
-          <Line>{`blockquote {`}</Line>
-          <Line indent>hanging-puntuation: first allow-end;</Line>
-          <Line>{`}`}</Line>
-        </CodeSnippet>
+        {example}
+
+        <CodeSnippet>{code}</CodeSnippet>
       </FeatureController>
     );
   }

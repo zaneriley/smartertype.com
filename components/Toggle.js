@@ -53,9 +53,9 @@ const ToggleLabel = styled.label`
   }
 `;
 
-const ToggleItem = ({ name, label }) => (
+const ToggleItem = ({ name, label, value }) => (
   <ToggleLabel>
-    <input type="radio" name={name} value={label} />
+    <input type="radio" name={name} value={value} defaultChecked={value ==="opentype"} />
     <span>
       <H4>{label}</H4>
     </span>
@@ -75,18 +75,22 @@ const Fieldset = styled.fieldset`
 `;
 
 export default class Toggle extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    const { name } = this.props;
+    const { name, onChange } = this.props;
 
     return (
-      <Fieldset>
+      <Fieldset onClick={onChange}>
         <legend>
           <H4>Display Options</H4>
         </legend>
         <ToggleWrapper>
-          <ToggleItem label="OpenType" name={name} checked />
-          <ToggleItem label="Browser" name={name} />
-          <ToggleItem label="Reset" name={name} />
+          <ToggleItem label="OpenType" name={name} value="opentype"  defaultChecked />
+          <ToggleItem label="Browser" name={name} value="browser" />
+          <ToggleItem label="Reset" name={name} value="reset" />
         </ToggleWrapper>
       </Fieldset>
     );
@@ -94,10 +98,13 @@ export default class Toggle extends React.Component {
 }
 
 Toggle.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  value: PropTypes.string.isRequired
 };
 
 ToggleItem.propTypes = {
   label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired
 };
