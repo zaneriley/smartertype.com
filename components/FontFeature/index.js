@@ -1,4 +1,4 @@
- import React from "react";
+import React from "react";
 import styled from "styled-components";
 import Toggle from "../Toggle";
 import { H3 } from "../Headings";
@@ -68,7 +68,9 @@ export default class FontFeature extends React.Component {
   render() {
     const { title, name, feature, code } = this.props;
 
-    const featureNode = React.cloneElement(feature, { demoStyling: this.state.showStyling } );
+    const featureNode = React.cloneElement(feature, {
+      demoStyling: this.state.showStyling
+    });
 
     return (
       <FeatureController>
@@ -78,7 +80,6 @@ export default class FontFeature extends React.Component {
         </HeadingControl>
 
         {featureNode}
-
       </FeatureController>
     );
   }

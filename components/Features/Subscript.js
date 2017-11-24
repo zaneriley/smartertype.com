@@ -51,17 +51,20 @@ const Wrapper = styled.div`
 `;
 
 const SmallCaps = styled.span`
-  font-feature-settings: 'c2sc','smcp';
+  font-feature-settings: "c2sc", "smcp";
   font-variant-caps: all-small-caps;
 `;
 // If toggle value = opentype feature
 // else if toggle value = browser
 // else if toggle value = reset
-const Subscript = ({demoStyling}) => (
+const Subscript = ({ demoStyling }) => (
   <Wrapper demoStyling={demoStyling}>
     <ExampleWrapper animate={demoStyling}>
       <P>
-        The chemical formula for caffeine is <SmallCaps>C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O</SmallCaps>.
+        The chemical formula for caffeine is{" "}
+        <SmallCaps>
+          C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O
+        </SmallCaps>.
       </P>
     </ExampleWrapper>
     <CodeSnippet>

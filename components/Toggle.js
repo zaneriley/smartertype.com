@@ -55,7 +55,12 @@ const ToggleLabel = styled.label`
 
 const ToggleItem = ({ name, label, value }) => (
   <ToggleLabel>
-    <input type="radio" name={name} value={value} defaultChecked={value ==="opentype"} />
+    <input
+      type="radio"
+      name={name}
+      value={value}
+      defaultChecked={value === "opentype"}
+    />
     <span>
       <H4>{label}</H4>
     </span>
@@ -88,7 +93,12 @@ export default class Toggle extends React.Component {
           <H4>Display Options</H4>
         </legend>
         <ToggleWrapper>
-          <ToggleItem label="OpenType" name={name} value="opentype"  defaultChecked />
+          <ToggleItem
+            label="OpenType"
+            name={name}
+            value="opentype"
+            defaultChecked
+          />
           <ToggleItem label="Browser" name={name} value="browser" />
           <ToggleItem label="Reset" name={name} value="reset" />
         </ToggleWrapper>

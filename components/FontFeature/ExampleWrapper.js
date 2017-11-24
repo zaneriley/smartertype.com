@@ -31,10 +31,8 @@ const Wrapper = styled.div`
 // If toggle value = opentype feature
 // else if toggle value = browser
 // else if toggle value = reset
-const ExampleWrapper = ({children, animate}) => (
-  <Wrapper animate={animate}>
-    {children}
-  </Wrapper>
+const ExampleWrapper = ({ children, animate }) => (
+  <Wrapper animate={animate}>{children}</Wrapper>
 );
 
 export default ExampleWrapper;

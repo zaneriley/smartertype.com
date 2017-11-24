@@ -25,24 +25,20 @@ function getComponentByName(name) {
     default:
       return null;
   }
-};
+}
 
-// find opentype array and features array matches
-// create new array
-// map through new array
 export default function FontFeaturesList() {
   const FeaturesList = Object.keys(MOCK_FEATURES).map((key, index) => {
-
-    return[
-        <FontFeature
-          title={MOCK_FEATURES[key].title}
-          name={MOCK_FEATURES[key].name}
-          feature={getComponentByName(MOCK_FEATURES[key].componentName)}
-          key={`feature-${MOCK_FEATURES[key].name}-${index}`}
-        />,
-        <HorizontalRule wide key={`hr-${MOCK_FEATURES[key].name}`} />
+    return [
+      <FontFeature
+        title={MOCK_FEATURES[key].title}
+        name={MOCK_FEATURES[key].name}
+        feature={getComponentByName(MOCK_FEATURES[key].componentName)}
+        key={`feature-${MOCK_FEATURES[key].name}-${index}`}
+      />,
+      <HorizontalRule wide key={`hr-${MOCK_FEATURES[key].name}`} />
     ];
-});
+  });
 
   return <div>{FeaturesList}</div>;
-};
+}

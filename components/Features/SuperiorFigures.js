@@ -53,12 +53,13 @@ const Wrapper = styled.div`
 // If toggle value = opentype feature
 // else if toggle value = browser
 // else if toggle value = reset
-const SuperiorFigures = ({demoStyling}) => (
+const SuperiorFigures = ({ demoStyling }) => (
   <Wrapper demoStyling={demoStyling}>
     <ExampleWrapper animate={demoStyling}>
       <P>
         Dijkstra’s algorithm is an algorithm for finding the shortest paths
-        between nodes in a graph, which may represent, for example, road networks.
+        between nodes in a graph, which may represent, for example, road
+        networks.
         <sup>
           <Link href="#">1</Link>
         </sup>{" "}
