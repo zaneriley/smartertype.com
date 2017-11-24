@@ -56,7 +56,7 @@ export const TYPESTYLES = {
       ${getFontSize(-1, TYPEFACES.sourceSansPro)}
       font-family: var(--font-family-sans);
       font-weight: var(--font-weight-bold);
-      font-feature-settings: c2sc, 'smcp';
+      font-feature-settings: 'c2sc','smcp';
       font-variant: all-small-caps;
       text-transform: uppercase;
       letter-spacing: var(--letter-spacing);
@@ -103,7 +103,7 @@ export const COLORS = {
   },
 
   primary: {
-    base: `#5849fe`
+    base: `hsla(245, 99%, 64%, 1)`
   },
 
   success: {
@@ -111,7 +111,8 @@ export const COLORS = {
   },
 
   accent: {
-    base: `#FFE3D9`
+    base: `#FFE3D9`,
+    light: `#FFF3E2`
   }
 };
 

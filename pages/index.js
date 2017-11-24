@@ -5,9 +5,7 @@ import { H1, H2, H3, H4, P } from "../components/Headings";
 import { Grid, Main, Sidebar } from "../components/Grid";
 import Link from "../components/Link";
 import HorizontalRule from "../components/HorizontalRule";
-import FontFeature from "../components/FontFeature";
-import { Line } from "../components/CodeSnippet";
-import SuperiorFigures from "../components/FontFeature/SuperiorFigures";
+import FontFeaturesList from "../components/FontFeaturesList";
 
 const Nav = styled.nav`
   grid-column: span 5;
@@ -51,18 +49,7 @@ export default () => (
     </Grid>
     <Grid>
       <Main>
-        <FontFeature
-          title="Superior Figures"
-          name="superior-figures"
-          feature={<SuperiorFigures />}
-        />
-        <HorizontalRule wide />
-        <FontFeature
-          title="Old Style Numerals"
-          name="old-style-numerals"
-          feature={<SuperiorFigures />}
-        />
-        <HorizontalRule wide />
+        <FontFeaturesList />
       </Main>
     </Grid>
   </div>

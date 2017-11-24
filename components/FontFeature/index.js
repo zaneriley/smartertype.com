@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import styled from "styled-components";
 import Toggle from "../Toggle";
 import { H3 } from "../Headings";
@@ -31,29 +31,16 @@ const FeatureController = styled.div`
   > * {
     margin-top: var(--spacing-base);
   }
-
-  sup {
-    all: unset;
-    font-variant-position: super;
-    font-feature-settings: "sups";
-    line-height: 1;
-    font-weight: var(--font-weight-bold);
-
-    a::before,
-    a::after {
-      display: inline;
-    }
-
-    a::before {
-      content: "(";
-    }
-
-    a::after {
-      content: ")";
-    }
-  }
 `;
 
+/* TODO: Figure out the right way to wire this component's state to 
+ * the specific font feature's styling.
+ * 
+ * After that, loop through all the font features in a separate 
+ * component so that we can check which features a font supports, 
+ * and just display those.
+ * 
+ */
 export default class FontFeature extends React.Component {
   constructor(props) {
     super(props);
@@ -67,16 +54,21 @@ export default class FontFeature extends React.Component {
 
   toggleFeatureDisplay(event) {
     this.setState({ showStyling: event.target.value });
+  }
 
-    const option = event.target.value;
- 
-    if (option === "opentype") {
-      console.log("opentype");
+  renderStyling() {
+    if (this.state.showStyling === "opentype") {
+      return "opentype";
+    } else if (this.state.showStyling === "browser") {
+      return "browser";
     }
+    return "reset";
   }
 
   render() {
-    const { title, name, example, code } = this.props;
+    const { title, name, feature, code } = this.props;
+
+    const featureNode = React.cloneElement(feature, { demoStyling: this.state.showStyling } );
 
     return (
       <FeatureController>
@@ -85,9 +77,8 @@ export default class FontFeature extends React.Component {
           <Toggle onChange={this.toggleFeatureDisplay} name={name} />
         </HeadingControl>
 
-        {example}
+        {featureNode}
 
-        <CodeSnippet>{code}</CodeSnippet>
       </FeatureController>
     );
   }

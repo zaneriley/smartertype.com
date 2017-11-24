@@ -63,6 +63,7 @@ const StyledLine = styled.span`
     display: block;
     text-indent: 0;
     margin-left: 2ch;
+    color: var(--color-primary-base);
   `
       : ``};
 `;
