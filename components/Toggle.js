@@ -99,8 +99,7 @@ export default class Toggle extends React.Component {
 
 Toggle.propTypes = {
   name: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
-  value: PropTypes.string.isRequired
+  onClick: PropTypes.func
 };
 
 ToggleItem.propTypes = {

@@ -5,13 +5,12 @@ import Link from "../Link";
 import CodeSnippet, { Line } from "../CodeSnippet";
 
 const Wrapper = styled.div`
-  sup {
-    all: unset;
-    font-variant-position: super;
-    font-feature-settings: "sups";
-    line-height: 1;
-    font-weight: var(--font-weight-bold);
 
+  > * {
+    margin-top: var(--spacing-base);
+  }
+
+  sup {
     a::before,
     a::after {
       display: inline;
@@ -25,13 +24,36 @@ const Wrapper = styled.div`
       content: ")";
     }
   }
+
+  ${props => props.demoStyling === "opentype" ? `
+      sup {
+        all: unset;
+        font-variant-position: super;
+        font-feature-settings: "sups";
+        font-size: inherit;
+        line-height: 1;
+        font-weight: var(--font-weight-bold);
+      }
+    ` : ``}
+
+    ${props => props.demoStyling === "browser" ? `
+      sup {
+        font-weight: var(--font-weight-bold);
+      }
+    ` : ``}
+
+  ${props => props.demoStyling === "reset" ? `
+      sup {
+        all: unset;
+      }
+    ` : ``}
 `;
 
 // If toggle value = opentype feature
 // else if toggle value = browser
 // else if toggle value = reset
-const SuperiorFigures = () => (
-  <Wrapper>
+const SuperiorFigures = ({demoStyling}) => (
+  <Wrapper demoStyling={demoStyling}>
     <P>
       Dijkstra’s algorithm is an algorithm for finding the shortest paths
       between nodes in a graph, which may represent, for example, road networks.
