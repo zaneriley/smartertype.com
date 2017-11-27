@@ -84,7 +84,8 @@ injectGlobal`
     --spacing-base:     ${BASE_LINE_UNIT}rem;
     --spacing-large:    ${getModularScale("spacing", "small", 1)}rem;
     --spacing-larger:   ${getModularScale("spacing", "small", 2)}rem;
-    --column-gap:       var(--spacing-small);
+    --column-gap-small: var(--spacing-smaller);
+    --column-gap-base:  var(--spacing-small);
   }
 
   @media screen and (min-width: ${BREAKPOINTS.medium}px) {
@@ -101,7 +102,8 @@ injectGlobal`
         getModularScale("spacing", "small", 2),
         getModularScale("spacing", "large", 2)
       )};
-      --column-gap:     var(--spacing-large);
+      --column-gap-small: var(--spacing-base);
+      --column-gap-base:  var(--spacing-large);
     }
   }
 
@@ -122,6 +124,10 @@ injectGlobal`
     margin-top: var(--spacing-large);
   }
 
+  p + p {
+    margin-top: var(--spacing-base);
+  }
+  
   *:focus {
     outline: 4px solid #00defd;
   }

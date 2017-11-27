@@ -8,9 +8,14 @@ const ToggleWrapper = styled.div`
   border: 1px solid ${COLORS.neutral.base};
   border-radius: var(--border-radius-base);
   overflow: hidden;
+  user-select: none;
 
   legend + & {
     margin-top: var(--spacing-smaller);
+  }
+
+  > * {
+    width: 33%;
   }
 `;
 
@@ -32,10 +37,13 @@ const ToggleLabel = styled.label`
 
   & > span {
     display: inline-flex;
+    width: 33%;
+    min-width: min-content;
     height: var(--spacing-base);
     align-items: center;
     padding-right: var(--spacing-small);
     padding-left: var(--spacing-small);
+    text-align: center;
     color: ${COLORS.primary.base};
   }
 
@@ -62,7 +70,7 @@ const ToggleItem = ({ name, label, value }) => (
       defaultChecked={value === "opentype"}
     />
     <span>
-      <H4>{label}</H4>
+      <H4 center>{label}</H4>
     </span>
   </ToggleLabel>
 );

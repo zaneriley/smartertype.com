@@ -10,74 +10,47 @@ const Wrapper = styled.div`
     margin-top: var(--spacing-base);
   }
 
-  sup {
-    a::before,
-    a::after {
-      display: inline;
-    }
-
-    a::before {
-      content: "(";
-    }
-
-    a::after {
-      content: ")";
-    }
-  }
-
   ${props =>
     props.demoStyling === "opentype"
       ? `
-      sub {
-        all: unset;
-        font-variant-position: sub;
-        font-feature-settings: 'subs' !important;
-        font-variant-caps: normal;
-        font-size: inherit;
-        line-height: 1;
+    p {
+        font-variant-numeric: oldstyle-nums;
       }
     `
       : ``} ${props =>
       props.demoStyling === "browser"
         ? `
-      sub {
-
-      }
     `
         : ``} ${props =>
       props.demoStyling === "reset"
         ? `
-      sub {
-        all: unset;
-      }
+
     `
         : ``};
-`;
-
-const SmallCaps = styled.span`
-  font-feature-settings: "c2sc", "smcp";
-  font-variant-caps: all-small-caps;
 `;
 
 // If toggle value = opentype feature
 // else if toggle value = browser
 // else if toggle value = reset
-const Subscript = ({ demoStyling }) => (
+const OldstyleFigures = ({ demoStyling }) => (
   <Wrapper demoStyling={demoStyling}>
     <ExampleWrapper animate={demoStyling}>
-      <P large inline>
-        The chemical formula for caffeine is{" "}
-        <SmallCaps>
-          C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O
-        </SmallCaps>.
+      <P>
+        On November 7, 2016, debt held by the public was $14.3 trillion or about
+        76% of the previous 12 months of GDP. Intragovernmental holdings stood
+        at $5.4 trillion, giving a combined total gross national debt of $19.8
+        trillion or about 106% of the previous 12 months of GDP; $6.2 trillion
+        or approximately 45% of the debt held by the public was owned by foreign
+        investors, the largest of which were Japan and China at about $1.09
+        trillion for Japan and $1.06 trillion for China as of December 2016.
       </P>
     </ExampleWrapper>
     <CodeSnippet>
-      <Line>{`sub {`}</Line>
-      <Line indent>font-variant-position: sub;</Line>
+      <Line>{`p {`}</Line>
+      <Line indent>font-variant-numeric: oldstyle-nums;</Line>
       <Line>{`}`}</Line>
     </CodeSnippet>
   </Wrapper>
 );
 
-export default Subscript;
+export default OldstyleFigures;

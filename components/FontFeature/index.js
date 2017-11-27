@@ -2,13 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import Toggle from "../Toggle";
 import { H3 } from "../Headings";
+import Link from "../Link";
 import CodeSnippet from "../CodeSnippet";
+import { BREAKPOINTS } from "../../utils/css-variables";
 
 const HeadingControl = styled.div`
   display: flex;
   justify-content: space-between;
+  grid-template-columns: auto-fit auto-fit;
   align-items: flex-end;
   margin-top: calc(var(--spacing-small) * -1);
+  flex-wrap: wrap;
 
   > * {
     margin: 0;
@@ -20,16 +24,71 @@ const HeadingControl = styled.div`
 
   h3 {
     padding-bottom: var(--spacing-smaller);
+    white-space: nowrap;
   }
 
   fieldset {
     flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  * + fieldset {
+    margin-top: var(--spacing-smaller);
+  }
+
+  @media screen and (min-width: ${BREAKPOINTS.large}px) {
+    flex-wrap: nowrap;
+
+    > * {
+      margin: 0;
+    }
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.large}px) {
+    > * {
+      width: 100%;
+    }
   }
 `;
 
 const FeatureController = styled.div`
-  > * {
+  > * + * {
     margin-top: var(--spacing-base);
+  }
+`;
+
+const AnchorHook = styled.span`
+  position: relative;
+  
+
+  @media screen and (min-width: ${BREAKPOINTS.medium}px) and (pointer: fine) {
+
+
+    a::before {
+      position: absolute;
+      display: block;
+      left: calc(-1 * var(--column-gap-small));
+      padding-right: calc(var(--column-gap-small) / 2);
+      color: var(--color-neutral-dark);
+      opacity: 0;
+      margin: 0;
+      transition: opacity 350ms linear;
+      content: "#";
+    }
+
+    &:hover {
+      a::before {
+        opacity: 1;
+        transition: opacity 200ms linear;
+      }
+    }
+
+    &:active {
+      a::before {
+        color: var(--color-neutral-darker);
+        transition: color 50ms linear;
+      }
+    }
   }
 `;
 
@@ -75,7 +134,13 @@ export default class FontFeature extends React.Component {
     return (
       <FeatureController>
         <HeadingControl>
-          <H3>{title}</H3>
+          <AnchorHook>
+            <H3 id={name}>
+              <Link unstyled href={`#${name}`}>
+                {title}
+              </Link>
+            </H3>
+          </AnchorHook>
           <Toggle onChange={this.toggleFeatureDisplay} name={name} />
         </HeadingControl>
 

@@ -6,8 +6,7 @@ import CodeSnippet, { Line } from "../CodeSnippet";
 import ExampleWrapper from "../FontFeature/ExampleWrapper";
 
 const Wrapper = styled.div`
-
-  > * {
+  > * + * {
     margin-top: var(--spacing-base);
   }
 
@@ -26,7 +25,13 @@ const Wrapper = styled.div`
     }
   }
 
-  ${props => props.demoStyling === "opentype" ? `
+  p {
+    font-variant-numeric: proportional-nums;
+  }
+
+  ${props =>
+    props.demoStyling === "opentype"
+      ? `
       sup {
         all: unset;
         font-variant-position: super;
@@ -35,19 +40,22 @@ const Wrapper = styled.div`
         line-height: 1;
         font-weight: var(--font-weight-bold);
       }
-    ` : ``}
-
-    ${props => props.demoStyling === "browser" ? `
+    `
+      : ``} ${props =>
+      props.demoStyling === "browser"
+        ? `
       sup {
         font-weight: var(--font-weight-bold);
       }
-    ` : ``}
-
-  ${props => props.demoStyling === "reset" ? `
+    `
+        : ``} ${props =>
+      props.demoStyling === "reset"
+        ? `
       sup {
         all: unset;
       }
-    ` : ``}
+    `
+        : ``};
 `;
 
 // If toggle value = opentype feature

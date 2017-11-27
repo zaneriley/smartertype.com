@@ -56,7 +56,7 @@ export const TYPESTYLES = {
       ${getFontSize(-1, TYPEFACES.sourceSansPro)}
       font-family: var(--font-family-sans);
       font-weight: var(--font-weight-bold);
-      font-feature-settings: 'c2sc','smcp';
+      font-feature-settings: "c2sc" 1, "smcp" 1;
       font-variant: all-small-caps;
       text-transform: uppercase;
       letter-spacing: var(--letter-spacing);
@@ -67,6 +67,7 @@ export const TYPESTYLES = {
       ${getFontSize(0, TYPEFACES.sourceSansPro)}
       font-family: var(--font-family-sans);
       --line-height: 2.355;
+      --line-height-normal: 1.95;
     `,
 
   large: `

@@ -1,87 +1,87 @@
 const FONT_FEATURES = {
   aalt: {
     title: "Access All Alternates",
-    value: "access-all-alternatives",
+    name: "access-all-alternatives",
     componentName: ""
   },
   calt: {
     title: "Contextual Alternates",
-    value: "contextual-alternatives",
+    name: "contextual-alternatives",
     componentName: ""
   },
   c2pc: {
     title: "Petite Capitals From Capitals",
-    value: "petite-capitals-from-capitals",
+    name: "petite-capitals-from-capitals",
     componentName: ""
   },
   c2sc: {
     title: "Small Capitals From Capitals",
-    value: "small-capitals-from-capitals",
+    name: "small-capitals-from-capitals",
     componentName: "SmallCapitalsFromCapitals"
   },
   frac: {
     title: "Fractions",
-    value: "fractions",
+    name: "fractions",
     componentName: "Fractions"
   },
   kern: {
     title: "Kerning",
-    value: "kerning",
+    name: "kerning",
     componentName: "Kerning"
   },
   liga: {
     title: "Standard Ligatures",
-    value: "standard-ligatures",
+    name: "standard-ligatures",
     componentName: "StandardLigatures"
   },
   lnum: {
     title: "Lining Figures",
-    value: "lining-figures",
+    name: "lining-figures",
     componentName: "LingingFigures"
   },
   onum: {
     title: "Oldstyle Figures",
-    value: "oldstyle-figures",
+    name: "oldstyle-figures",
     componentName: "OldstyleFigures"
   },
   pcap: {
     title: "Petite Capitals",
-    value: "petite-capitals",
+    name: "petite-capitals",
     componentName: "PetiteCapitals"
   },
   pnum: {
     title: "Proportional Figures",
-    value: "proportional-figures",
+    name: "proportional-figures",
     componentName: "ProportionalFigures"
   },
   salt: {
     title: "Stylistic Alternates",
-    value: "stylistic-alternatives",
+    name: "stylistic-alternatives",
     componentName: "Stylistic Alternates"
   },
   sinf: {
     title: "Scientific Inferiors",
-    value: "scientific-inferiors",
+    name: "scientific-inferiors",
     componentName: "ScientificInferiors"
   },
   ss01: {
     title: "Stylistic Set",
-    value: "stylistic-set",
+    name: "stylistic-set",
     componentName: "StylisticSet"
   },
   subs: {
     title: "Subscript",
-    value: "subscript",
+    name: "subscript",
     componentName: "Subscript"
   },
   sups: {
     title: "Superscript",
-    value: "superscript",
+    name: "superscript",
     componentName: "Superscript"
   },
   tnum: {
     title: "Tabular Figures",
-    value: "tabular-figures",
+    name: "tabular-figures",
     componentName: "TabularFigures"
   }
 };

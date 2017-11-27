@@ -22,9 +22,12 @@ const Wrapper = styled.div`
     content: "";
     z-index: -1;
 
-  ${props => props.animate ? `
+    ${props =>
+      props.animate
+        ? `
     animation: ${rerenderNotification} 500ms ease 1 forwards;
-  ` : ``}
+  `
+        : ``};
   }
 `;
 

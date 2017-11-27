@@ -5,15 +5,35 @@ import HorizontalRule from "./HorizontalRule";
 import * as Features from "./Features";
 
 const MOCK_FEATURES = {
+  sups: {
+    title: "Superior Figures",
+    name: "superior-figures",
+    componentName: "SuperiorFigures"
+  },
+  liga: {
+    title: "Standard Ligatures",
+    name: "standard-ligatures",
+    componentName: "StandardLigatures"
+  },
   subs: {
     title: "Subscript",
     name: "subscript",
     componentName: "Subscript"
   },
-  sups: {
-    title: "Superior Figures",
-    name: "superior-figures",
-    componentName: "SuperiorFigures"
+  onum: {
+    title: "Oldstyle Figures",
+    name: "oldstyle-figures",
+    componentName: "OldstyleFigures"
+  },
+  sinf: {
+    title: "Scientific Inferiors",
+    name: "scientific-inferiors",
+    componentName: "ScientificInferiors"
+  },
+  frac: {
+    title: "Fractions",
+    name: "fractions",
+    componentName: "Fractions"
   }
 };
 
@@ -34,7 +54,7 @@ export default function FontFeaturesList() {
         title={MOCK_FEATURES[key].title}
         name={MOCK_FEATURES[key].name}
         feature={getComponentByName(MOCK_FEATURES[key].componentName)}
-        key={`feature-${MOCK_FEATURES[key].name}-${index}`}
+        key={`feature-${MOCK_FEATURES[key].name}`}
       />,
       <HorizontalRule wide key={`hr-${MOCK_FEATURES[key].name}`} />
     ];
