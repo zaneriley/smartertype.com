@@ -7,7 +7,6 @@ import DragAndDrop from "../components/DragAndDrop";
 import Link from "../components/Link";
 import HorizontalRule from "../components/HorizontalRule";
 import FontFeaturesList from "../components/FontFeaturesList";
-import DemoFont from "../components/DragAndDrop/DemoFont";
 import { BREAKPOINTS } from "../utils/css-variables";
 
 const Nav = styled.nav`

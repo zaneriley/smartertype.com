@@ -41,30 +41,6 @@ const SpaceWrapper = styled.div`
   }
 `;
 
-const FileIcon = () => (
-  <svg
-    width="98"
-    height="128"
-    viewBox="0 0 98 128"
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <desc>File Upload Icon</desc>
-    <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-      <polygon
-        id="fileBase"
-        fill="#FFD4A3"
-        points="0 0.0001215311 0 127.000122 97.694704 127.000122 97.694704 16.9722435 80.6402617 0.0001215311"
-      />
-      <polygon
-        id="fileCorner"
-        fill="#FFB969"
-        points="80.5980393 0.0001215311 80.5980393 17.0144756 97.6949178 17.0144756"
-      />
-    </g>
-  </svg>
-);
-
 const boxTarget = {
   drop(props, monitor) {
     if (props.onDrop) {
@@ -94,7 +70,7 @@ export default class TargetBox extends Component {
     return connectDropTarget(
       <div style={style}>
         <SpaceWrapper>
-          <P inline>
+          <P inline center>
             {isActive ? (
               "Release to drop"
             ) : (

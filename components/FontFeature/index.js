@@ -59,11 +59,8 @@ const FeatureController = styled.div`
 
 const AnchorHook = styled.span`
   position: relative;
-  
 
   @media screen and (min-width: ${BREAKPOINTS.medium}px) and (pointer: fine) {
-
-
     a::before {
       position: absolute;
       display: block;

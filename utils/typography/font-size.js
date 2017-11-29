@@ -57,7 +57,9 @@ export default function getFontSize(int, typeface) {
     --computedLineHeight: calc((var(--line-height) * var(--capitalHeight)) * 1px);
     --distanceBottom: ${DISTANCE_TOP};
     --distanceTop:    ${DISTANCE_BOTTOM};
-
+    
+    ${FONT_SIZE_SMALL > 13
+      ? `
     @media screen and (min-width: ${BREAKPOINTS.medium}px) {
       --fontSize: ${FONT_SIZE_FLUID};
       --capitalHeight: ${CAPITAL_HEIGHT_FLUID};
@@ -68,6 +70,7 @@ export default function getFontSize(int, typeface) {
       --capitalHeight:  ${CAPITAL_HEIGHT_LARGE};
       --fontSize: ${FONT_SIZE_LARGE}rem;
       --computedLineHeight: calc((var(--line-height) * var(--capitalHeight)) * 1px);
-    }
+    }`
+      : ``}
   `;
 }

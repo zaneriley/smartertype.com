@@ -66,6 +66,8 @@ const Small = styled.h4`
   width: 100%;
   justify-content: ${props => (props.center ? "center" : "")};
   ${TYPESTYLES.small};
+
+  color: ${props => (props.color ? props.color : ``)};
 `;
 
 export const H1 = ({ center, children, id }) => (
@@ -92,8 +94,8 @@ export const P = ({ center, children, id, large, color, inline }) => (
   </Default>
 );
 
-export const H4 = ({ center, children, id }) => (
-  <Small center={center} id={id}>
+export const H4 = ({ center, children, id, color }) => (
+  <Small center={center} id={id} color={color}>
     <OpticalAdjustment>{children}</OpticalAdjustment>
   </Small>
 );
