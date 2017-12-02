@@ -11,3 +11,9 @@ export const rerenderNotification = keyframes`
     transform: scale(1.01, 1.025)
   }
 `;
+
+export const dash = keyframes`
+  to {
+    stroke-dashoffset: -1000;
+  }
+`;

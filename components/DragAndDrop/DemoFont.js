@@ -8,8 +8,8 @@ import { H4 } from "../Headings";
 const WrapperStyling = {
   position: "relative",
   display: "inline-block",
-  marginTop: "var(--spacing-small)",
-  cursor: "move"
+  cursor: "move",
+  clipPath: "url(#bg)"
 };
 
 const DemoFontWrapper = styled.div`

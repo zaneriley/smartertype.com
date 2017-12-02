@@ -8,6 +8,7 @@ const StyledHR = styled.div`
   grid-gap: var(--spacing-base);
   align-items: center;
   width: 100%;
+  margin: var(--spacing-large) 0;
   color: var(--color-neutral-dark);
   user-select: none;
 

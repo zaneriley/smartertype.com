@@ -3,13 +3,14 @@ import PropTypes from "prop-types";
 import { DropTarget } from "react-dnd";
 import styled from "styled-components";
 import { P, H4, NoWrap } from "../Headings";
+import { dash } from "../Animations";
 
 const style = {
   position: "relative",
   backgroundColor: "white",
-  border: "4px dashed var(--color-primary-base)",
   borderRadius: "var(--border-radius-base)",
-  padding: "var(--spacing-base)",
+  padding: "var(--spacing-large)",
+  marginBottom: "var(--spacing-base)",
   textAlign: "center",
   overflow: "hidden"
 };
@@ -23,6 +24,7 @@ const BrowseFiles = styled.input`
   clip: rect(1px, 1px, 1px, 1px);
   border: 0;
   overflow: hidden;
+
   /* stylelint-enable unit-blacklist */
   & + label {
     cursor: pointer;
@@ -39,6 +41,34 @@ const SpaceWrapper = styled.div`
   h4 {
     color: var(--color-neutral-darker);
   }
+`;
+
+const Svg = styled.svg`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+`;
+
+const Rect = styled.rect`
+  stroke: var(--color-primary-base);
+  stroke-width: var(--spacing-smaller);
+  stroke-dasharray: 7;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  transition: stroke-dashoffset 300ms ease;
+
+  ${props =>
+    props.isActive
+      ? `
+    animation: ${dash} 30s linear infinite;
+  `
+      : ``};
 `;
 
 const boxTarget = {
@@ -72,7 +102,10 @@ export default class TargetBox extends Component {
         <SpaceWrapper>
           <P inline center>
             {isActive ? (
-              "Release to drop"
+              <span>
+                Release to drop<br />
+                <br />
+              </span>
             ) : (
               <span>
                 Drag and drop here
@@ -85,8 +118,13 @@ export default class TargetBox extends Component {
               </span>
             )}
           </P>
-          <H4 center>.otf .woff .woff2</H4>
+          <H4 center>
+            .otf, .woff, .woff2 <br />
+          </H4>
         </SpaceWrapper>
+        <Svg>
+          <Rect isActive={isActive} />
+        </Svg>
       </div>
     );
   }

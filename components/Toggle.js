@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { COLORS, SHADOWS } from "../utils/css-variables";
+import { COLORS, SHADOWS, BREAKPOINTS } from "../utils/css-variables";
 import { H4 } from "./Headings";
 
 const ToggleWrapper = styled.div`
@@ -37,7 +37,6 @@ const ToggleLabel = styled.label`
 
   & > span {
     display: inline-flex;
-    width: 33%;
     min-width: min-content;
     height: var(--spacing-base);
     align-items: center;
@@ -45,6 +44,11 @@ const ToggleLabel = styled.label`
     padding-left: var(--spacing-small);
     text-align: center;
     color: ${COLORS.primary.base};
+
+      @media screen and (max-width: ${BREAKPOINTS.large}px) {
+        width: 33%;
+      }
+    }
   }
 
   & input:not(:checked) + span {

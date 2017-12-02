@@ -58,7 +58,7 @@ export default function getFontSize(int, typeface) {
     --distanceBottom: ${DISTANCE_TOP};
     --distanceTop:    ${DISTANCE_BOTTOM};
     
-    ${FONT_SIZE_SMALL > 13
+    ${FONT_SIZE_SMALL >= 1
       ? `
     @media screen and (min-width: ${BREAKPOINTS.medium}px) {
       --fontSize: ${FONT_SIZE_FLUID};

@@ -11,6 +11,7 @@ export const Main = styled.main`
   margin-top: var(--spacing-larger);
   margin-right: auto;
   margin-left: auto;
+  margin-bottom: var(--spacing-larger);
   width: 100%;
 
   transform: ${props =>
@@ -22,8 +23,9 @@ export const Main = styled.main`
     margin-top: var(--spacing-large);
   }
 
-  @media screen and (min-width: ${BREAKPOINTS.medium}) {
-    margin-top: var(--spacing-base);
+  @media screen and (min-width: ${BREAKPOINTS.medium}px) {
+    margin-top: var(--spacing-large);
+    margin-bottom: var(--spacing-large);
   }
 `;
 

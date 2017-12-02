@@ -68,7 +68,7 @@ export default class Container extends Component {
           <DemoFont
             hideSourceOnDrag={true}
             file="http://localhost:3000/static/fonts/source-sans-pro-regular.woff"
-            filename="Source Serif Pro Bold"
+            filename="Fira Mono Regular"
             filetype="demofont"
           />
         </DemoWrapper>

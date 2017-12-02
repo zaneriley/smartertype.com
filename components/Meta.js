@@ -120,10 +120,6 @@ injectGlobal`
     box-sizing: border-box;
   }
 
-  * + * {
-    margin-top: var(--spacing-large);
-  }
-
   p + p {
     margin-top: var(--spacing-base);
   }
