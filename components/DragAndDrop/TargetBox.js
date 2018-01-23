@@ -58,10 +58,10 @@ const Rect = styled.rect`
   stroke: var(--color-primary-base);
   stroke-width: var(--spacing-smaller);
   stroke-dasharray: 7;
-  width: 100%;
-  height: 100%;
   fill: none;
   transition: stroke-dashoffset 300ms ease;
+  width: 100%;
+  height: 100%;
 
   ${props =>
     props.isActive

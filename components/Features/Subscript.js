@@ -4,6 +4,7 @@ import { P } from "../Headings";
 import Link from "../Link";
 import CodeSnippet, { Line } from "../CodeSnippet";
 import ExampleWrapper from "../FontFeature/ExampleWrapper";
+import codeDisplayOptions from "../FontFeature/_CodeDisplayOptions";
 
 const Wrapper = styled.div`
   > * {
@@ -38,20 +39,20 @@ const Wrapper = styled.div`
       }
     `
       : ``} ${props =>
-      props.demoStyling === "browser"
-        ? `
+  props.demoStyling === "browser"
+    ? `
       sub {
 
       }
     `
-        : ``} ${props =>
-      props.demoStyling === "reset"
-        ? `
+    : ``} ${props =>
+  props.demoStyling === "reset"
+    ? `
       sub {
         all: unset;
       }
     `
-        : ``};
+    : ``};
 `;
 
 const SmallCaps = styled.span`
@@ -74,7 +75,14 @@ const Subscript = ({ demoStyling }) => (
     </ExampleWrapper>
     <CodeSnippet>
       <Line>{`sub {`}</Line>
-      <Line indent>font-variant-position: sub;</Line>
+      {codeDisplayOptions(
+        demoStyling,
+        [
+          <Line indent key="line-1">{`font-variant-position: sub;`}</Line>,
+          <Line indent key="line-2">{`font-feature-settings: 'subs';`}</Line>
+        ],
+        [<Line indent key="line-3">{`all: unset;`}</Line>]
+      )}
       <Line>{`}`}</Line>
     </CodeSnippet>
   </Wrapper>

@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { P, NoWrap } from "../Headings";
+import LigGrid from "../LigGrid";
 import Link from "../Link";
 import CodeSnippet, { Line } from "../CodeSnippet";
 import ExampleWrapper from "../FontFeature/ExampleWrapper";
+import codeDisplayOptions from "../FontFeature/_CodeDisplayOptions";
 
 const Wrapper = styled.div`
   > * {
@@ -72,7 +74,20 @@ const ScientificInferiors = ({ demoStyling }) => (
     </ExampleWrapper>
     <CodeSnippet>
       <Line>{`.scientific-inferiors {`}</Line>
-      <Line indent>font-variant-position: sinf;</Line>
+      {codeDisplayOptions(
+        demoStyling,
+        [
+          <Line indent key="line-1">
+            font-feature-settings: "sinf";
+          </Line>
+        ],
+        [
+          <Line
+            indent
+            key="line-2"
+          >{`font-feature-settings: "sinf" off;`}</Line>
+        ]
+      )}
       <Line>{`}`}</Line>
     </CodeSnippet>
   </Wrapper>

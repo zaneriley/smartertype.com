@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { P } from "../Headings";
+import LigGrid from "../LigGrid";
 import Link from "../Link";
 import CodeSnippet, { Line } from "../CodeSnippet";
 import ExampleWrapper from "../FontFeature/ExampleWrapper";
+import codeDisplayOptions from "../FontFeature/_CodeDisplayOptions";
 
 const Wrapper = styled.div`
   > * {
@@ -18,20 +20,17 @@ const Wrapper = styled.div`
       }
     `
       : ``} ${props =>
-      props.demoStyling === "browser"
-        ? `
+  props.demoStyling === "browser"
+    ? `
     `
-        : ``} ${props =>
-      props.demoStyling === "reset"
-        ? `
+    : ``} ${props =>
+  props.demoStyling === "reset"
+    ? `
 
     `
-        : ``};
+    : ``};
 `;
 
-// If toggle value = opentype feature
-// else if toggle value = browser
-// else if toggle value = reset
 const OldstyleFigures = ({ demoStyling }) => (
   <Wrapper demoStyling={demoStyling}>
     <ExampleWrapper animate={demoStyling}>
@@ -44,10 +43,22 @@ const OldstyleFigures = ({ demoStyling }) => (
         investors, the largest of which were Japan and China at about $1.09
         trillion for Japan and $1.06 trillion for China as of December 2016.
       </P>
+
+      <LigGrid
+        characters={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]}
+      />
     </ExampleWrapper>
     <CodeSnippet>
       <Line>{`p {`}</Line>
-      <Line indent>font-variant-numeric: oldstyle-nums;</Line>
+      {codeDisplayOptions(
+        demoStyling,
+        [
+          <Line indent key="line-1">
+            font-variant-numeric: oldstyle-nums;
+          </Line>
+        ],
+        [<Line indent key="line-2">{`font-variant-numeric: normal;`}</Line>]
+      )}
       <Line>{`}`}</Line>
     </CodeSnippet>
   </Wrapper>

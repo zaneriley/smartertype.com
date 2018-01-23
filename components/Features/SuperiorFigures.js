@@ -4,6 +4,7 @@ import { P } from "../Headings";
 import Link from "../Link";
 import CodeSnippet, { Line } from "../CodeSnippet";
 import ExampleWrapper from "../FontFeature/ExampleWrapper";
+import codeDisplayOptions from "../FontFeature/_CodeDisplayOptions";
 
 const Wrapper = styled.div`
   > * + * {
@@ -42,20 +43,20 @@ const Wrapper = styled.div`
       }
     `
       : ``} ${props =>
-      props.demoStyling === "browser"
-        ? `
+  props.demoStyling === "browser"
+    ? `
       sup {
         font-weight: var(--font-weight-bold);
       }
     `
-        : ``} ${props =>
-      props.demoStyling === "reset"
-        ? `
+    : ``} ${props =>
+  props.demoStyling === "reset"
+    ? `
       sup {
         all: unset;
       }
     `
-        : ``};
+    : ``};
 `;
 
 // If toggle value = opentype feature
@@ -79,7 +80,18 @@ const SuperiorFigures = ({ demoStyling }) => (
     </ExampleWrapper>
     <CodeSnippet>
       <Line>{`sup {`}</Line>
-      <Line indent>font-variant-position: super;</Line>
+      {codeDisplayOptions(
+        demoStyling,
+        [
+          <Line indent key="line-1">
+            font-variant-position: super;
+          </Line>,
+          <Line indent key="line-2">
+            font-feature-settings: "sups";
+          </Line>
+        ],
+        [<Line indent key="line-3">{`all: unset;`}</Line>]
+      )}
       <Line>{`}`}</Line>
     </CodeSnippet>
   </Wrapper>

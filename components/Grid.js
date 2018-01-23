@@ -39,7 +39,7 @@ export const Sidebar = styled.aside`
   padding: var(--spacing-base);
   min-height: min-content;
   height: 75vh;
-  background-color: var(--color-accent-base);
+  background-color: var(--color-primary-light);
   background-image: url("/static/images/background-texture-1440w.jpg");
   background-position: top center;
   background-size: cover;

@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { P } from "../Headings";
+import LigGrid from "../LigGrid";
 import Link from "../Link";
 import CodeSnippet, { Line } from "../CodeSnippet";
 import ExampleWrapper from "../FontFeature/ExampleWrapper";
+import codeDisplayOptions from "../FontFeature/_CodeDisplayOptions";
 
 const Wrapper = styled.div`
   > * {
@@ -18,36 +20,17 @@ const Wrapper = styled.div`
       }
     `
       : ``} ${props =>
-      props.demoStyling === "browser"
-        ? `
+  props.demoStyling === "browser"
+    ? `
     `
-        : ``} ${props =>
-      props.demoStyling === "reset"
-        ? `
+    : ``} ${props =>
+  props.demoStyling === "reset"
+    ? `
     p {
         font-variant-ligatures: none;  
       }
     `
-        : ``};
-`;
-
-const LigGrid = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: var(--spacing-base);
-  align-items: center;
-  border: 1px solid var(--color-neutral-base);
-  border-radius: var(--border-radius-base);
-  color: var(--color-neutral-darker);
-
-  > * {
-    margin-top: 0;
-  }
-
-  > * + * {
-    border-left: 1px solid var(--color-neutral-base);
-    padding: var(--spacing-small) 0;
-  }
+    : ``};
 `;
 
 // If toggle value = opentype feature
@@ -61,45 +44,33 @@ const StandardLigatures = ({ demoStyling }) => (
         mysteries sends stories of doom unraveling. The beetle scuttled across a
         milkweed leaf, its aeneous body like a golden shield.<br />
       </P>
-      <LigGrid>
-        <P center large>
-          ft
-        </P>{" "}
-        <P center large>
-          fi
-        </P>{" "}
-        <P center large>
-          fj
-        </P>{" "}
-        <P center large>
-          fl
-        </P>{" "}
-        <P center large>
-          ff
-        </P>{" "}
-        <P center large>
-          ffi
-        </P>{" "}
-        <P center large>
-          ffj
-        </P>{" "}
-        <P center large>
-          ffl
-        </P>{" "}
-        <P center large>
-          st
-        </P>{" "}
-        <P center large>
-          ae
-        </P>{" "}
-        <P center large>
-          oo
-        </P>
-      </LigGrid>
+      <LigGrid
+        characters={[
+          "ft",
+          "fi",
+          "fj",
+          "fl",
+          "ff",
+          "ffi",
+          "ffj",
+          "ffl",
+          "st",
+          "ae",
+          "oo"
+        ]}
+      />
     </ExampleWrapper>
     <CodeSnippet>
       <Line>{`p {`}</Line>
-      <Line indent>font-variant-ligatures: common-ligatures;</Line>
+      {codeDisplayOptions(
+        demoStyling,
+        [
+          <Line indent key="line-1">
+            font-variant-ligatures: common-ligatures;
+          </Line>
+        ],
+        [<Line indent key="line-2">{`font-variant-ligatures: none;`}</Line>]
+      )}
       <Line>{`}`}</Line>
     </CodeSnippet>
   </Wrapper>

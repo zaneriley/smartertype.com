@@ -70,10 +70,11 @@ injectGlobal`
     --color-neutral-darkest:  ${COLORS.neutral.darkest};
 
     --color-primary-base:     ${COLORS.primary.base};
+    --color-primary-light:    ${COLORS.primary.light};
     --color-success-base:     ${COLORS.success.base};
     
     --color-accent-base:      ${COLORS.accent.base};
-    --color-accent-light:      ${COLORS.accent.light};
+    --color-accent-light:     ${COLORS.accent.light};
 
     --border-radius-base:     4px;
     --letter-spacing:         0.05em;

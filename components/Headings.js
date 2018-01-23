@@ -30,6 +30,13 @@ const Large = styled.h3`
   ${TYPESTYLES.large};
 `;
 
+const LargeLabel = styled.label`
+  display: flex;
+  width: 100%;
+  justify-content: ${props => (props.center ? "center" : "")};
+  ${TYPESTYLES.large};
+`;
+
 const Default = styled.p`
   display: flex;
   width: 100%;
@@ -104,6 +111,12 @@ export const Li = ({ center, children, id }) => (
   <DefaultList>
     <OpticalAdjustment>{children}</OpticalAdjustment>
   </DefaultList>
+);
+
+export const LabelH3 = ({ center, children, id }) => (
+  <LargeLabel center={center} id={id}>
+    <OpticalAdjustment>{children}</OpticalAdjustment>
+  </LargeLabel>
 );
 
 export const NoWrap = styled.span`

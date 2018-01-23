@@ -4,6 +4,7 @@ import { P, H4, Li } from "../Headings";
 import Link from "../Link";
 import CodeSnippet, { Line } from "../CodeSnippet";
 import ExampleWrapper from "../FontFeature/ExampleWrapper";
+import codeDisplayOptions from "../FontFeature/_CodeDisplayOptions";
 
 const Wrapper = styled.div`
   > * {
@@ -35,9 +36,6 @@ const Amount = styled.span`
 
 const Ingredient = styled.span``;
 
-// If toggle value = opentype feature
-// else if toggle value = browser
-// else if toggle value = reset
 const Fractions = ({ demoStyling }) => (
   <Wrapper demoStyling={demoStyling}>
     <ExampleWrapper animate={demoStyling}>
@@ -72,7 +70,22 @@ const Fractions = ({ demoStyling }) => (
     </ExampleWrapper>
     <CodeSnippet>
       <Line>{`.fraction {`}</Line>
-      <Line indent>font-variant-numeric: diagonal-fractions;</Line>
+      {codeDisplayOptions(
+        demoStyling,
+        [
+          <Line
+            indent
+            key="line-1"
+          >{`font-variant-numeric: diagonal-fractions;`}</Line>,
+          <Line indent key="line-2">{`font-feature-settings: "frac";`}</Line>
+        ],
+        [
+          <Line
+            indent
+            key="line-3"
+          >{`font-feature-settings: "frac" off;`}</Line>
+        ]
+      )}
       <Line>{`}`}</Line>
     </CodeSnippet>
   </Wrapper>
