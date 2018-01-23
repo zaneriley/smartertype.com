@@ -1,8 +1,12 @@
-# Personal boilerplate for react projects.
+# Smarter type for the modern web.
 
-This is my own rough boilerplate for React projects. It builds on top of [Next.js](https://github.com/zeit/next.js/) and adds tooling for linting and deployment. You shouldn't use this. It only supports my specific design decisions.
+Instead of recreating text demos to demonstrate typography features and how to use them, I decided to make this.
 
-## Priorities
+It builds on top of [Next.js](https://github.com/zeit/next.js/). Apologies for some of the spaghetti code and mixed react patterns. 
 
-* Code quality and tooling – ESLint, Prettier, Stylelint and more.
-* App speed – Server-side rendering, critical css and more.
+## How to contribute
+
+All pull requests welcome, especially around the typographic features including copywriting. Take a look at the [issues](https://github.com/zaneriley/smartertype.com/issues) for more specifics.
+
+Contact me at [@zaneriley](https://twitter.com/zaneriley) for more help.
+
