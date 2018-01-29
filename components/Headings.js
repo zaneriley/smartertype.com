@@ -72,6 +72,7 @@ const Small = styled.h4`
   display: flex;
   width: 100%;
   justify-content: ${props => (props.center ? "center" : "")};
+  text-align: ${props => (props.center ? "center" : "")};
   ${TYPESTYLES.small};
 
   color: ${props => (props.color ? props.color : ``)};

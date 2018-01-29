@@ -5,6 +5,7 @@ import Link from "../Link";
 import CodeSnippet, { Line } from "../CodeSnippet";
 import ExampleWrapper from "../FontFeature/ExampleWrapper";
 import codeDisplayOptions from "../FontFeature/_CodeDisplayOptions";
+import ChangeNotification from "../ChangeNotification";
 
 const Wrapper = styled.div`
   > * {
@@ -65,11 +66,17 @@ const SmallCaps = styled.span`
 // else if toggle value = reset
 const Subscript = ({ demoStyling }) => (
   <Wrapper demoStyling={demoStyling}>
-    <ExampleWrapper animate={demoStyling}>
+    <ExampleWrapper>
       <P large inline>
         The chemical formula for caffeine is{" "}
         <SmallCaps>
-          C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O
+          C<ChangeNotification animate={demoStyling}>
+            <sub>8</sub>
+          </ChangeNotification>H<ChangeNotification animate={demoStyling}>
+            <sub>10</sub>
+          </ChangeNotification>N<ChangeNotification animate={demoStyling}>
+            <sub>4</sub>
+          </ChangeNotification>O
         </SmallCaps>.
       </P>
     </ExampleWrapper>

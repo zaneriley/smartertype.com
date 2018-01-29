@@ -37,8 +37,6 @@ const HeadingControl = styled.div`
   }
 
   @media screen and (min-width: ${BREAKPOINTS.large}px) {
-    flex-wrap: nowrap;
-
     > * {
       margin: 0;
     }
@@ -76,13 +74,13 @@ const AnchorHook = styled.span`
   & input:checked + div {
     position: relative;
     display: block;
-    background-color: #ffe2bc;
+    background-color: var(--color-accent-light);
     padding: var(--spacing-small) var(--spacing-small) 0;
     border-radius: var(--border-radius-base) var(--border-radius-base) 0 0;
     margin-left: calc(var(--spacing-small) * -1);
 
-    & svg g {
-      stroke: #d67200;
+    & svg path {
+      fill: var(--color-accent-dark);
     }
 
     &::after {
@@ -134,7 +132,7 @@ const AnchorHook = styled.span`
 
 const DescriptionPanel = styled.div`
   position: relative;
-  background-color: var(--color-accent-light);
+  background-color: var(--color-accent-lighter);
   padding: calc(var(--spacing-small) + var(--spacing-smaller))
     var(--spacing-small);
   margin: var(--spacing-smaller) calc(var(--spacing-small) * -1) 0;
@@ -207,12 +205,12 @@ export default class FontFeature extends React.Component {
             </label>
           </AnchorHook>
           <Toggle onChange={this.toggleFeatureDisplay} name={name} />
+          {this.state.showDefinition === true > 0 && (
+            <DescriptionPanel>
+              <P>{description}</P>
+            </DescriptionPanel>
+          )}
         </HeadingControl>
-        {this.state.showDefinition === true > 0 && (
-          <DescriptionPanel>
-            <P>{description}</P>
-          </DescriptionPanel>
-        )}
         {featureNode}
       </FeatureController>
     );

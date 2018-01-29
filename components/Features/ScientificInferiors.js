@@ -6,6 +6,7 @@ import Link from "../Link";
 import CodeSnippet, { Line } from "../CodeSnippet";
 import ExampleWrapper from "../FontFeature/ExampleWrapper";
 import codeDisplayOptions from "../FontFeature/_CodeDisplayOptions";
+import ChangeNotification from "../ChangeNotification";
 
 const Wrapper = styled.div`
   > * {
@@ -40,6 +41,12 @@ const Sinf = styled.span`
       : ``};
 `;
 
+const ChangeSinf = ({ demoStyling, children }) => (
+  <ChangeNotification animate={demoStyling}>
+    <Sinf demoStyling={demoStyling}>{children}</Sinf>
+  </ChangeNotification>
+);
+
 // If toggle value = opentype feature
 // else if toggle value = browser
 // else if toggle value = reset
@@ -51,23 +58,23 @@ const ScientificInferiors = ({ demoStyling }) => (
         <SmallCaps>
           <NoWrap>
             C
-            <Sinf demoStyling={demoStyling}>6</Sinf>
+            <ChangeSinf demoStyling={demoStyling}>6</ChangeSinf>
             H
-            <Sinf demoStyling={demoStyling}>1</Sinf>
-            <Sinf demoStyling={demoStyling}>2</Sinf>
+            <ChangeSinf demoStyling={demoStyling}>1</ChangeSinf>
+            <ChangeSinf demoStyling={demoStyling}>2</ChangeSinf>
             O
-            <Sinf demoStyling={demoStyling}>6</Sinf>
+            <ChangeSinf demoStyling={demoStyling}>6</ChangeSinf>
             O + 6O
-            <Sinf demoStyling={demoStyling}>2</Sinf>
+            <ChangeSinf demoStyling={demoStyling}>2</ChangeSinf>
             O →
           </NoWrap>{" "}
           <NoWrap>
             6CO
-            <Sinf demoStyling={demoStyling}>2</Sinf>
+            <ChangeSinf demoStyling={demoStyling}>2</ChangeSinf>
             CO + 6H
-            <Sinf demoStyling={demoStyling}>2</Sinf>
+            <ChangeSinf demoStyling={demoStyling}>2</ChangeSinf>
             H
-            <Sinf demoStyling={demoStyling}>0</Sinf>
+            <ChangeSinf demoStyling={demoStyling}>0</ChangeSinf>
           </NoWrap>
         </SmallCaps>
       </P>

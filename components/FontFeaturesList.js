@@ -5,13 +5,6 @@ import HorizontalRule from "./HorizontalRule";
 import * as Features from "./Features";
 
 const MOCK_FEATURES = {
-  sups: {
-    title: "Superior Figures",
-    name: "superior-figures",
-    componentName: "SuperiorFigures",
-    description:
-      "Numerical figures that sit above the baseline and are made to be more legible at smaller sizes. Ideal for footnotes and math formulas."
-  },
   liga: {
     title: "Standard Ligatures",
     name: "standard-ligatures",
@@ -19,12 +12,12 @@ const MOCK_FEATURES = {
     description:
       "The combination of two or more characters that form a new glyph. This is to often avoid collision between two characters that appear together."
   },
-  subs: {
-    title: "Subscript",
-    name: "subscript",
-    componentName: "Subscript",
+  frac: {
+    title: "Fractions",
+    name: "fractions",
+    componentName: "Fractions",
     description:
-      "Numerical figures that sit below the baseline and are made to be more legible at smaller sizes. Similiar to Scientific Inferiors, these are ideal for chemical notations."
+      "Special glyphs that make it easier to read fractional forms, especially in passages of text, like in a recipe."
   },
   onum: {
     title: "Oldstyle Figures",
@@ -40,12 +33,19 @@ const MOCK_FEATURES = {
     description:
       "Numerical figures that sit below the baseline and are made to be more legible at smaller sizes. Similiar to Subscript, these are ideal for chemical notations."
   },
-  frac: {
-    title: "Fractions",
-    name: "fractions",
-    componentName: "Fractions",
+  subs: {
+    title: "Subscript",
+    name: "subscript",
+    componentName: "Subscript",
     description:
-      "Special glyphs that make it easier to read fractional forms, especially in passages of text, like in a recipe."
+      "Numerical figures that sit below the baseline and are made to be more legible at smaller sizes. Similiar to Scientific Inferiors, these are ideal for chemical notations."
+  },
+  sups: {
+    title: "Superior Figures",
+    name: "superior-figures",
+    componentName: "SuperiorFigures",
+    description:
+      "Numerical figures that sit above the baseline and are made to be more legible at smaller sizes. Ideal for footnotes and math formulas."
   }
 };
 

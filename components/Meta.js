@@ -68,13 +68,16 @@ injectGlobal`
     --color-neutral-dark:     ${COLORS.neutral.dark};
     --color-neutral-darker:   ${COLORS.neutral.darker};
     --color-neutral-darkest:  ${COLORS.neutral.darkest};
-
-    --color-primary-base:     ${COLORS.primary.base};
+    
     --color-primary-light:    ${COLORS.primary.light};
+    --color-primary-base:     ${COLORS.primary.base};
+    
     --color-success-base:     ${COLORS.success.base};
     
-    --color-accent-base:      ${COLORS.accent.base};
+    --color-accent-lighter:   ${COLORS.accent.lighter};
     --color-accent-light:     ${COLORS.accent.light};
+    --color-accent-base:      ${COLORS.accent.base};
+    --color-accent-dark:      ${COLORS.accent.dark};
 
     --border-radius-base:     4px;
     --letter-spacing:         0.05em;
@@ -87,6 +90,10 @@ injectGlobal`
     --spacing-larger:   ${getModularScale("spacing", "small", 2)}rem;
     --column-gap-small: var(--spacing-smaller);
     --column-gap-base:  var(--spacing-small);
+
+    --z-bottom: -1;
+    --z-base: 0;
+    --z-top: 1;
   }
 
   @media screen and (min-width: ${BREAKPOINTS.medium}px) {

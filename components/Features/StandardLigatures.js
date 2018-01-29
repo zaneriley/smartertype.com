@@ -6,6 +6,7 @@ import Link from "../Link";
 import CodeSnippet, { Line } from "../CodeSnippet";
 import ExampleWrapper from "../FontFeature/ExampleWrapper";
 import codeDisplayOptions from "../FontFeature/_CodeDisplayOptions";
+import ChangeNotification from "../ChangeNotification";
 
 const Wrapper = styled.div`
   > * {
@@ -40,9 +41,24 @@ const StandardLigatures = ({ demoStyling }) => (
   <Wrapper demoStyling={demoStyling}>
     <ExampleWrapper animate={demoStyling}>
       <P>
-        A scruffy marmot often finds cactus flowers offtrack. Spectacular
-        mysteries sends stories of doom unraveling. The beetle scuttled across a
-        milkweed leaf, its aeneous body like a golden shield.<br />
+        A scru<ChangeNotification animate={demoStyling}>ff</ChangeNotification>y
+        marmot o<ChangeNotification animate={demoStyling}>
+          ft
+        </ChangeNotification>en finds cactus{" "}
+        <ChangeNotification animate={demoStyling}>fl</ChangeNotification>owers o<ChangeNotification
+          animate={demoStyling}
+        >
+          ff
+        </ChangeNotification>track. Spectacular my<ChangeNotification
+          animate={demoStyling}
+        >
+          st
+        </ChangeNotification>eries sends{" "}
+        <ChangeNotification animate={demoStyling}>st</ChangeNotification>ories
+        of d<ChangeNotification animate={demoStyling}>oo</ChangeNotification>m
+        unraveling. The beetle scuttled across a milkweed leaf, its{" "}
+        <ChangeNotification animate={demoStyling}>ae</ChangeNotification>neous
+        body like a golden shield.<br />
       </P>
       <LigGrid
         characters={[

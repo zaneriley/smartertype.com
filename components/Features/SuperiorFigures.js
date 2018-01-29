@@ -5,6 +5,7 @@ import Link from "../Link";
 import CodeSnippet, { Line } from "../CodeSnippet";
 import ExampleWrapper from "../FontFeature/ExampleWrapper";
 import codeDisplayOptions from "../FontFeature/_CodeDisplayOptions";
+import ChangeNotification from "../ChangeNotification";
 
 const Wrapper = styled.div`
   > * + * {
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
   }
 
   sup {
+    color: var(--color-primary-base);
     a::before,
     a::after {
       display: inline;
@@ -46,6 +48,7 @@ const Wrapper = styled.div`
   props.demoStyling === "browser"
     ? `
       sup {
+        line-height: 1;
         font-weight: var(--font-weight-bold);
       }
     `
@@ -64,17 +67,21 @@ const Wrapper = styled.div`
 // else if toggle value = reset
 const SuperiorFigures = ({ demoStyling }) => (
   <Wrapper demoStyling={demoStyling}>
-    <ExampleWrapper animate={demoStyling}>
+    <ExampleWrapper a>
       <P>
         Dijkstra’s algorithm is an algorithm for finding the shortest paths
         between nodes in a graph, which may represent, for example, road
         networks.
         <sup>
-          <Link href="#">1</Link>
+          <Link href="#">
+            <ChangeNotification animate={demoStyling}>1</ChangeNotification>
+          </Link>
         </sup>{" "}
         It was conceived by computer scientist Edsger W. Dijkstra in 1956 and
         published three years later.<sup>
-          <Link href="#">2</Link>
+          <Link href="#">
+            <ChangeNotification animate={demoStyling}>2</ChangeNotification>
+          </Link>
         </sup>
       </P>
     </ExampleWrapper>

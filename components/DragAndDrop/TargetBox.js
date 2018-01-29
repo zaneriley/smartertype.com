@@ -12,7 +12,8 @@ const style = {
   padding: "var(--spacing-large)",
   marginBottom: "var(--spacing-base)",
   textAlign: "center",
-  overflow: "hidden"
+  overflow: "hidden",
+  zIndex: "var(--z-base)"
 };
 
 const BrowseFiles = styled.input`
@@ -30,6 +31,7 @@ const BrowseFiles = styled.input`
     cursor: pointer;
     font-weight: var(--font-weight-bold);
     color: var(--color-primary-base);
+    z-index: var(--z-top);
   }
 `;
 
@@ -52,6 +54,7 @@ const Svg = styled.svg`
   margin: auto;
   width: 100%;
   height: 100%;
+  z-index: var(--z-bottom);
 `;
 
 const Rect = styled.rect`
@@ -112,7 +115,12 @@ export default class TargetBox extends Component {
                 <NoWrap>
                   {" "}
                   or
-                  <BrowseFiles type="file" name="file" id="file" />{" "}
+                  <BrowseFiles
+                    type="file"
+                    name="file"
+                    id="file"
+                    accept=".woff,.otf,.eot"
+                  />{" "}
                   <label htmlFor="file">browse your files.</label>
                 </NoWrap>
               </span>

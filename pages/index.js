@@ -56,8 +56,8 @@ export default () => (
       </Nav>
       <Footer>
         <H4 center>
-          <Link href="https://twitter.com/zaneriley" rel target="_blank">
-            Made by @zaneriley
+          <Link href="https://zaneriley.com" rel target="_blank">
+            Made by Zane Riley
           </Link>
         </H4>
       </Footer>

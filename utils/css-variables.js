@@ -104,8 +104,8 @@ export const COLORS = {
   },
 
   primary: {
-    base: `hsla(245, 99%, 64%, 1)`,
-    light: `#FFE3D9`
+    light: `#FFE3D9`,
+    base: `hsla(245, 99%, 64%, 1)`
   },
 
   success: {
@@ -113,8 +113,10 @@ export const COLORS = {
   },
 
   accent: {
+    lighter: `#FFF3E2`,
+    light: `#FFE2BC`,
     base: `#FFD099`,
-    light: `#FFF3E2`
+    dark: `#D67200`
   }
 };
 
