@@ -8,6 +8,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { DragDropContext, DropTarget } from "react-dnd";
 import HTML5Backend, { NativeTypes } from "react-dnd-html5-backend";
+var opentype = require("opentype.js");
 import ItemTypes from "./Constants";
 import TargetBox from "./TargetBox";
 import FileList from "./FileList";
@@ -32,6 +33,7 @@ export default class Container extends Component {
     super(props);
 
     this.handleFileDrop = this.handleFileDrop.bind(this);
+    this.handleFileUpload = this.handleFileUpload.bind(this);
 
     this.state = { droppedFiles: [] };
   }
@@ -46,6 +48,39 @@ export default class Container extends Component {
     }
   }
 
+  handleFileUpload(e) {
+    let file = e.target.files[0];
+    console.log(file);
+    let font = null;
+    let reader = new FileReader();
+    let fontFileName = null;
+
+    reader.onload = function(e) {
+      try {
+        font = opentype.parse(e.target.result);
+
+        const tags = new Set();
+        const response = font.tables.gsub.features;
+
+        response.forEach(item => {
+          tags.add(item.tag);
+        });
+
+        for (let item of tags.values()) {
+          console.log(item);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    reader.onerror = function(err) {
+      console.log(err);
+    };
+
+    reader.readAsArrayBuffer(file);
+  }
+
   render() {
     const { FILE } = NativeTypes;
     const { droppedFiles } = this.state;
@@ -55,6 +90,7 @@ export default class Container extends Component {
         <TargetBox
           accepts={[FILE, ItemTypes.DEMOFONT]}
           onDrop={this.handleFileDrop}
+          onChange={this.handleFileUpload}
         />
         <FileList files={droppedFiles} />
         <H4 color="var(--color-neutral-dark)">Try these fonts out</H4>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { DropTarget } from "react-dnd";
 import styled from "styled-components";
+
 import { P, H4, NoWrap } from "../Headings";
 import { dash } from "../Animations";
 
@@ -97,7 +98,7 @@ export default class TargetBox extends Component {
   };
 
   render() {
-    const { canDrop, isOver, connectDropTarget } = this.props;
+    const { canDrop, isOver, onChange, connectDropTarget } = this.props;
     const isActive = canDrop && isOver;
 
     return connectDropTarget(
@@ -119,7 +120,8 @@ export default class TargetBox extends Component {
                     type="file"
                     name="file"
                     id="file"
-                    accept=".woff,.otf,.eot"
+                    accept=".woff,.otf,.woff2"
+                    onChange={onChange}
                   />{" "}
                   <label htmlFor="file">browse your files.</label>
                 </NoWrap>

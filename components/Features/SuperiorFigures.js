@@ -18,14 +18,6 @@ const Wrapper = styled.div`
     a::after {
       display: inline;
     }
-
-    a::before {
-      content: "(";
-    }
-
-    a::after {
-      content: ")";
-    }
   }
 
   p {
@@ -74,13 +66,13 @@ const SuperiorFigures = ({ demoStyling }) => (
         networks.
         <sup>
           <Link href="#">
-            <ChangeNotification animate={demoStyling}>1</ChangeNotification>
+            <ChangeNotification animate={demoStyling}>(1)</ChangeNotification>
           </Link>
         </sup>{" "}
         It was conceived by computer scientist Edsger W. Dijkstra in 1956 and
         published three years later.<sup>
           <Link href="#">
-            <ChangeNotification animate={demoStyling}>2</ChangeNotification>
+            <ChangeNotification animate={demoStyling}>(2)</ChangeNotification>
           </Link>
         </sup>
       </P>
