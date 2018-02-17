@@ -40,7 +40,6 @@ export default class Container extends Component {
 
   getFeatures(e) {
     let file = e;
- 
 
     let font = null;
     let reader = new FileReader();
@@ -68,14 +67,14 @@ export default class Container extends Component {
     reader.onerror = function(err) {
       console.log(err);
     };
-
   }
 
   handleFileDrop(item, monitor) {
     if (monitor) {
       if (monitor.getItem().filetype === "demofont") {
-        return console.log("im smart mom");
+        return console.log(monitor.getItem().files);
       }
+
       const droppedFiles = monitor.getItem().files;
       this.setState({ droppedFiles });
 
