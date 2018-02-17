@@ -38,6 +38,39 @@ export default class Container extends Component {
     this.state = { droppedFiles: [] };
   }
 
+  getFeatures(e) {
+    let file = e;
+ 
+
+    let font = null;
+    let reader = new FileReader();
+
+    reader.onload = function(e) {
+      try {
+        font = opentype.parse(e.target.result);
+        console.log(e.target.result);
+
+        const tags = new Set();
+        const response = font.tables.gsub.features;
+
+        response.forEach(item => {
+          tags.add(item.tag);
+        });
+
+        for (let item of tags.values()) {
+          console.log(item);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    reader.onerror = function(err) {
+      console.log(err);
+    };
+
+  }
+
   handleFileDrop(item, monitor) {
     if (monitor) {
       if (monitor.getItem().filetype === "demofont") {
@@ -45,20 +78,51 @@ export default class Container extends Component {
       }
       const droppedFiles = monitor.getItem().files;
       this.setState({ droppedFiles });
+
+      this.getFeatures(droppedFiles[0]);
+
+      let file = droppedFiles[0];
+
+      let font = null;
+      let reader = new FileReader();
+
+      reader.onload = function(droppedFiles) {
+        try {
+          font = opentype.parse(droppedFiles.target.result);
+          console.log(font);
+          const tags = new Set();
+          const response = font.tables.gsub.features;
+
+          response.forEach(item => {
+            tags.add(item.tag);
+          });
+
+          for (let item of tags.values()) {
+            console.log(item);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+      reader.onerror = function(err) {
+        console.log(err);
+      };
+
+      reader.readAsArrayBuffer(file);
     }
   }
 
   handleFileUpload(e) {
     let file = e.target.files[0];
-    console.log(file);
+
     let font = null;
     let reader = new FileReader();
-    let fontFileName = null;
 
     reader.onload = function(e) {
       try {
         font = opentype.parse(e.target.result);
-
+        console.log(font);
         const tags = new Set();
         const response = font.tables.gsub.features;
 
