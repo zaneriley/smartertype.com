@@ -56,34 +56,32 @@ export default class Container extends Component {
   }
 
   handleFileDrop(item, monitor) {
+    let file;
     if (monitor) {
-      if (monitor.getItem().filetype === "demofont") {
-        return console.log(monitor.getItem().files);
-      }
-
       const droppedFiles = monitor.getItem().files;
       this.setState({ droppedFiles });
 
-      const file = droppedFiles[0];
-
-      let font = null;
-      const reader = new FileReader();
-
-      reader.onload = function(droppedFiles) {
-        try {
-          font = opentype.parse(droppedFiles.target.result);
-          getFeatureList(font);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-
-      reader.onerror = function(err) {
-        console.log(err);
-      };
-
-      reader.readAsArrayBuffer(file);
+      file = droppedFiles[0];
+    } else {
+      file = item.target.files[0];
     }
+    let font = null;
+    const reader = new FileReader();
+
+    reader.onload = function(droppedFiles) {
+      try {
+        font = opentype.parse(droppedFiles.target.result);
+        getFeatureList(font);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    reader.onerror = function(err) {
+      console.log(err);
+    };
+
+    reader.readAsArrayBuffer(file);
   }
 
   handleFileUpload(e) {
@@ -119,7 +117,7 @@ export default class Container extends Component {
         <TargetBox
           accepts={[FILE, ItemTypes.DEMOFONT]}
           onDrop={this.handleFileDrop}
-          onChange={this.handleFileUpload}
+          onChange={this.handleFileDrop}
         />
         <FileList files={droppedFiles} />
         <H4 color="var(--color-neutral-dark)">Try these fonts out</H4>
