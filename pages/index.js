@@ -196,7 +196,7 @@ export default class App extends React.Component {
         <H3>{this.state.name}</H3>,
         <H3>
           {this.state.features.map((feature, index) => [
-            <Link href={`#${feature.code}`}>{feature.title}</Link>,
+            <Link href={`#${feature.tag}`}>{feature.title}</Link>,
             <br />
           ])}
         </H3>
