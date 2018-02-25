@@ -38,6 +38,7 @@ const getFeatureList = font => {
 
   const featureList = tags.values();
 
+  console.log(font);
   /* TODO: Figure out how to get rid of the linting error on this. */
   for (let feature of featureList) {
     console.log(feature);
@@ -48,67 +49,11 @@ const getFeatureList = font => {
 export default class Container extends Component {
   constructor(props) {
     super(props);
-
-    this.handleFileDrop = this.handleFileDrop.bind(this);
-    this.handleFileUpload = this.handleFileUpload.bind(this);
-
     this.state = { droppedFiles: [] };
   }
 
-  handleFileDrop(item, monitor) {
-    let file;
-    if (monitor) {
-      const droppedFiles = monitor.getItem().files;
-      this.setState({ droppedFiles });
-
-      file = droppedFiles[0];
-    } else {
-      file = item.target.files[0];
-    }
-    let font = null;
-    const reader = new FileReader();
-
-    reader.onload = function(droppedFiles) {
-      try {
-        font = opentype.parse(droppedFiles.target.result);
-        getFeatureList(font);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    reader.onerror = function(err) {
-      console.log(err);
-    };
-
-    reader.readAsArrayBuffer(file);
-  }
-
-  handleFileUpload(e) {
-    const file = e.target.files[0];
-
-    let font = null;
-    const reader = new FileReader();
-
-    /* eslint-disable func-names, no-shadow */
-    reader.onload = function(e) {
-      /* eslint-enable */
-      try {
-        font = opentype.parse(e.target.result);
-        getFeatureList(font);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    reader.onerror = function(err) {
-      console.log(err);
-    };
-
-    reader.readAsArrayBuffer(file);
-  }
-
   render() {
+    const { onChange } = this.props;
     const { FILE } = NativeTypes;
     const { droppedFiles } = this.state;
 
@@ -116,8 +61,8 @@ export default class Container extends Component {
       <div>
         <TargetBox
           accepts={[FILE, ItemTypes.DEMOFONT]}
-          onDrop={this.handleFileDrop}
-          onChange={this.handleFileDrop}
+          onDrop={onChange}
+          onChange={onChange}
         />
         <FileList files={droppedFiles} />
         <H4 color="var(--color-neutral-dark)">Try these fonts out</H4>

@@ -1,22 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 import Meta from "../components/Meta";
-import { H1, H2, H3, H4, P, NoWrap } from "../components/Headings";
-import { Grid, Main, Sidebar } from "../components/Grid";
-import DragAndDrop from "../components/DragAndDrop";
+import { H1, H3, P, NoWrap } from "../components/Headings";
+import { Main, Sidebar } from "../components/Grid";
+import { HorizontalRule } from "../components/HorizontalRule";
 import Link from "../components/Link";
-import HorizontalRule from "../components/HorizontalRule";
+import DragAndDrop from "../components/DragAndDrop";
 import FontFeaturesList from "../components/FontFeaturesList";
 import { BREAKPOINTS } from "../utils/css-variables";
+import FONT_FEATURES from "../components/FontFeature/features";
 
-const Nav = styled.nav`
-  grid-column: span 5;
+const opentype = require("opentype.js");
 
-  > * + * {
-    margin-top: var(--spacing-base);
-  }
-`;
-
+/* TODO: Move these styled-components elsewhere. */
 const Footer = styled.footer`
   grid-column: span 5;
   justify-self: flex-end;
@@ -38,32 +34,204 @@ const PageWrapper = styled.div`
   }
 `;
 
-export default () => (
-  <PageWrapper>
-    <Meta />
-    <Sidebar>
-      <Nav>
-        <H1>
-          Smarter <br />Typography
-        </H1>
-        <HorizontalRule />
-        <P>
-          Check which typographic features your font supports. Don’t worry, your
-          fonts aren’t stored. Everything happens in{" "}
-          <NoWrap>your browser.</NoWrap>
-        </P>
-        <DragAndDrop />
-      </Nav>
-      <Footer>
-        <H4 center>
-          <Link href="https://zaneriley.com" rel target="_blank">
-            Made by Zane Riley
-          </Link>
-        </H4>
-      </Footer>
-    </Sidebar>
-    <Main>
-      <FontFeaturesList />
-    </Main>
-  </PageWrapper>
-);
+const AppMachine = {
+  noFont: {
+    UPDATE: "updating"
+  },
+  updating: {
+    UPDATE_SUCCESS: "hasFont",
+    UPDATE_FAILURE: "error",
+    // WRONG FILE TYPE
+    // MORE THAN A SINGLE FILE
+    CANCEL_UPDATE: "noFont"
+    // CLEAR FONT ?
+  },
+  error: {
+    UPDATE: "updating"
+  },
+  hasFont: {
+    UPDATE: "updating"
+  }
+};
+
+/* TODO: Move this <Toggle />. */
+const fontFeatureMachine = {
+  opentype: {
+    BROWSER: "browser",
+    RESET: "reset"
+  },
+  browser: {
+    OPENTYPE: "opentype",
+    RESET: "reset"
+  },
+  reset: {
+    OPENTYPE: "opentype",
+    BROWSER: "browser"
+  },
+  info: {
+    SHOW_INFO: "info"
+  }
+};
+
+const getFeatureList = font => {
+  const tags = new Set();
+  const response = font.tables.gsub.features;
+
+  // eslint-disable-next-line array-callback-return
+  response.map(feature => {
+    tags.add(feature.tag);
+  });
+
+  // convert to an array for comparison
+  const FEATURE_TAGS = Array.from(tags.values());
+
+  // filter our total list of features with what the font has
+  const LIST_OF_FEATURES = FONT_FEATURES.filter(feature =>
+    FEATURE_TAGS.includes(feature.tag)
+  );
+
+  return LIST_OF_FEATURES;
+};
+
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.getFontData = this.getFontData.bind(this);
+
+    this.state = {
+      app: "noFont", // finite state
+      name: null,
+      features: [],
+      fmCapitalHeight: null,
+      fmDescender: null,
+      fmAscender: null
+    };
+  }
+
+  getFontData(item, monitor) {
+    let file;
+    if (monitor) {
+      const droppedFiles = monitor.getItem().files;
+      file = droppedFiles[0];
+    } else {
+      file = item.target.files[0];
+    }
+    const reader = new FileReader();
+
+    reader.onload = droppedFiles => {
+      try {
+        const fontData = opentype.parse(droppedFiles.target.result);
+        const fontFeatures = getFeatureList(fontData);
+
+        const font = {
+          name: fontData.names.fontFamily.en, // "Source Sans Pro"
+          features: fontFeatures,
+          fmCapitalHeight: fontData.tables.os2.sCapHeight / 1000, // 0.66
+          fmDescender: fontData.descender / -1000, // 0.273
+          fmAscender: fontData.ascender / 1000 // 0.984
+        };
+        this.transition("UPDATE", font);
+        this.handleUpdate();
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    reader.onerror = err => {
+      console.log(err);
+    };
+
+    reader.readAsArrayBuffer(file);
+  }
+
+  transition(action, e) {
+    const currentappState = this.state.app;
+    const nextappState = AppMachine[currentappState][action];
+
+    if (nextappState) {
+      const nextState = this.command(nextappState, action, e);
+      this.setState({
+        app: nextappState,
+        ...nextState
+      });
+      console.log(this.state);
+    }
+  }
+
+  /* eslint-disable consistent-return, class-methods-use-this */
+  command(nextState, action, e) {
+    switch (nextState) {
+      case "updating": {
+        // get font data
+        const font = {
+          name: e.name, // "Source Sans Pro"
+          features: e.features, // ["liga"; "onum"]
+          fmCapitalHeight: e.fmCapitalHeight, // 0.66
+          fmDescender: e.fmDescender, // 0.273
+          fmAscender: e.fmAscender // 0.943
+        };
+        return font;
+      }
+      case "noFont":
+        break;
+      case "hasFont":
+        break;
+      default:
+        break;
+    }
+  }
+  /* eslint-enable */
+
+  handleUpdate() {
+    this.transition("UPDATE_SUCCESS");
+  }
+
+  updateCSS() {
+    return null;
+  }
+
+  renderUploadViewer(state) {
+    if (state === "hasFont") {
+      return [
+        <H3>{this.state.name}</H3>,
+        <H3>
+          {this.state.features.map((feature, index) => [
+            <Link href={`#${feature.code}`}>{feature.title}</Link>,
+            <br />
+          ])}
+        </H3>
+      ];
+    }
+    return [
+      <P>
+        Check which typographic features your font supports. Don’t worry, your
+        fonts aren’t stored. Everything happens in{" "}
+        <NoWrap>your browser.</NoWrap>
+      </P>,
+      <DragAndDrop onChange={this.getFontData} />
+    ];
+  }
+
+  renderFontFeaturesList(state) {
+    return <FontFeaturesList features={this.state.features} />;
+  }
+
+  render() {
+    const appState = this.state.app;
+
+    return (
+      <PageWrapper>
+        <Meta />
+        <Sidebar>
+          <H1>
+            Smarter <br />Typography
+          </H1>
+          <HorizontalRule />
+          {this.renderUploadViewer(appState)}
+          <Footer />
+        </Sidebar>
+        <Main>{this.renderFontFeaturesList(appState)}</Main>
+      </PageWrapper>
+    );
+  }
+}
