@@ -50,6 +50,11 @@ export const Sidebar = styled.aside`
     margin-top: var(--spacing-base);
   }
 
+  h2 + *,
+  * + h2 {
+    margin-top: var(--spacing-large);
+  }
+
   @media screen and (min-width: ${BREAKPOINTS.medium}px) {
     position: sticky;
     margin: 0;

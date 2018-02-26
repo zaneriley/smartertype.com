@@ -1,5 +1,4 @@
 import getFontSize from "./typography/font-size";
-import getModularScale from "./typography/modular-scale";
 import getLineHeight from "./typography/line-height";
 
 export const BREAKPOINTS = {

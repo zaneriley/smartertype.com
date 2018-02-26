@@ -59,7 +59,7 @@ const Wrapper = styled.div`
 // else if toggle value = reset
 const SuperiorFigures = ({ demoStyling }) => (
   <Wrapper demoStyling={demoStyling}>
-    <ExampleWrapper a>
+    <ExampleWrapper>
       <P>
         Dijkstra’s algorithm is an algorithm for finding the shortest paths
         between nodes in a graph, which may represent, for example, road

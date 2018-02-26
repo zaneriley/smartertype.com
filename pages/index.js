@@ -1,7 +1,19 @@
+/* TODO: You should figure how if you want to render the H2 with the font uploaded by 
+ * using CSS or by using Opentype.js. Either way is going to involve some interesting math problems.
+ *
+ * After that, it'd be worth cleaning up a lot of the styling issues going on, 
+ * especially on smaller break points. 
+ *
+ * I need to clean up the feature data so that it doesn't break and isn't so brittle.
+ * I also need to either keep a master list separate or make it so non-existant components don't break the rendering. 
+ *
+ * NOTE: Double check that linting doesn't break FontFeatureList
+ */
+
 import React from "react";
 import styled from "styled-components";
 import Meta from "../components/Meta";
-import { H1, H3, P, NoWrap } from "../components/Headings";
+import { H1, H2, H3, P, NoWrap, H4 } from "../components/Headings";
 import { Main, Sidebar } from "../components/Grid";
 import { HorizontalRule } from "../components/HorizontalRule";
 import Link from "../components/Link";
@@ -101,7 +113,7 @@ export default class App extends React.Component {
     this.state = {
       app: "noFont", // finite state
       name: null,
-      features: [],
+      features: FONT_FEATURES,
       fmCapitalHeight: null,
       fmDescender: null,
       fmAscender: null
@@ -193,7 +205,7 @@ export default class App extends React.Component {
   renderUploadViewer(state) {
     if (state === "hasFont") {
       return [
-        <H3>{this.state.name}</H3>,
+        <H2 center>{this.state.name}</H2>,
         <H3>
           {this.state.features.map((feature, index) => [
             <Link href={`#${feature.tag}`}>{feature.title}</Link>,
@@ -213,7 +225,9 @@ export default class App extends React.Component {
   }
 
   renderFontFeaturesList(state) {
-    return <FontFeaturesList features={this.state.features} />;
+    const features = this.state.features;
+    console.log(features);
+    return <FontFeaturesList features={features} />;
   }
 
   render() {
@@ -228,7 +242,17 @@ export default class App extends React.Component {
           </H1>
           <HorizontalRule />
           {this.renderUploadViewer(appState)}
-          <Footer />
+          <Footer>
+            <H4 center>
+              <Link
+                href="https://twitter.com/zaneriley"
+                rel="noopener"
+                target="_blank"
+              >
+                Made by @zaneriley
+              </Link>
+            </H4>
+          </Footer>
         </Sidebar>
         <Main>{this.renderFontFeaturesList(appState)}</Main>
       </PageWrapper>

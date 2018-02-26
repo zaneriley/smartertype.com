@@ -13,6 +13,7 @@ const Largest = styled.h1`
   display: flex;
   width: 100%;
   justify-content: ${props => (props.center ? "center" : "")};
+  text-align: ${props => (props.center ? "center" : "")};
   ${TYPESTYLES.largest};
 `;
 
@@ -20,6 +21,7 @@ const Larger = styled.h2`
   display: flex;
   width: 100%;
   justify-content: ${props => (props.center ? "center" : "")};
+  text-align: ${props => (props.center ? "center" : "")};
   ${TYPESTYLES.larger};
 `;
 
@@ -27,6 +29,7 @@ const Large = styled.h3`
   display: flex;
   width: 100%;
   justify-content: ${props => (props.center ? "center" : "")};
+  text-align: ${props => (props.center ? "center" : "")};
   ${TYPESTYLES.large};
 `;
 
@@ -34,6 +37,7 @@ const LargeLabel = styled.label`
   display: flex;
   width: 100%;
   justify-content: ${props => (props.center ? "center" : "")};
+  text-align: ${props => (props.center ? "center" : "")};
   ${TYPESTYLES.large};
 `;
 
@@ -41,6 +45,7 @@ const Default = styled.p`
   display: flex;
   width: 100%;
   justify-content: ${props => (props.center ? "center" : "")};
+  text-align: ${props => (props.center ? "center" : "")};
   ${TYPESTYLES.base};
 
   ${props =>
@@ -61,6 +66,7 @@ const DefaultList = styled.li`
   flex-direction: column;
   width: 100%;
   justify-content: ${props => (props.center ? "center" : "")};
+  text-align: ${props => (props.center ? "center" : "")};
   ${TYPESTYLES.base};
 
   & + & {
