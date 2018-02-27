@@ -58,29 +58,11 @@ export default class Container extends Component {
     const { droppedFiles } = this.state;
 
     return (
-      <div>
-        <TargetBox
-          accepts={[FILE, ItemTypes.DEMOFONT]}
-          onDrop={onChange}
-          onChange={onChange}
-        />
-        <FileList files={droppedFiles} />
-        <H4 color="var(--color-neutral-dark)">Try these fonts out</H4>
-        <DemoWrapper>
-          <DemoFont
-            hideSourceOnDrag
-            file="http://localhost:3000/static/fonts/source-sans-pro-regular.woff"
-            filename="Source Serif Pro Bold"
-            filetype="demofont"
-          />
-          <DemoFont
-            hideSourceOnDrag
-            file="http://localhost:3000/static/fonts/source-sans-pro-regular.woff"
-            filename="Fira Mono Regular"
-            filetype="demofont"
-          />
-        </DemoWrapper>
-      </div>
+      <TargetBox
+        accepts={[FILE, ItemTypes.DEMOFONT]}
+        onDrop={onChange}
+        onChange={onChange}
+      />
     );
   }
 }

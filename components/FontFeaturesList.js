@@ -17,7 +17,7 @@ function getComponentByName(name) {
 
 const FontFeaturesList = features => {
   const featuresArr = features["features"];
-  const FeatureListLength = features.length;
+  const FeatureListLength = featuresArr.length;
 
   const FeaturesList = featuresArr.map((feat, index) => {
     const fontFeature = (
@@ -31,7 +31,7 @@ const FontFeaturesList = features => {
     );
 
     if (FeatureListLength === index + 1) {
-      return { fontFeature };
+      return [fontFeature];
     }
     return [fontFeature, <HorizontalRule wide key={`hr-${feat.tag}`} />];
   });

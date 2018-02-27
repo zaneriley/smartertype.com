@@ -90,6 +90,7 @@ injectGlobal`
     --spacing-larger:   ${getModularScale("spacing", "small", 2)}rem;
     --column-gap-small: var(--spacing-smaller);
     --column-gap-base:  var(--spacing-small);
+    --max-width-prose: calc(593px + var(--column-gap-base) * 2);
 
     --z-bottom: -1;
     --z-base: 0;

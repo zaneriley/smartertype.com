@@ -24,28 +24,6 @@ import FONT_FEATURES from "../components/FontFeature/features";
 
 const opentype = require("opentype.js");
 
-/* TODO: Move these styled-components elsewhere. */
-const Footer = styled.footer`
-  grid-column: span 5;
-  justify-self: flex-end;
-  margin-top: auto;
-  margin-bottom: 0;
-  padding-top: var(--spacing-large);
-
-  > * + * {
-    margin-top: var(--spacing-base);
-  }
-`;
-
-const PageWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-
-  @media screen and (min-width: ${BREAKPOINTS.medium}px) {
-    flex-wrap: nowrap;
-  }
-`;
-
 const AppMachine = {
   noFont: {
     UPDATE: "updating"
@@ -66,24 +44,46 @@ const AppMachine = {
   }
 };
 
-/* TODO: Move this <Toggle />. */
-const fontFeatureMachine = {
-  opentype: {
-    BROWSER: "browser",
-    RESET: "reset"
-  },
-  browser: {
-    OPENTYPE: "opentype",
-    RESET: "reset"
-  },
-  reset: {
-    OPENTYPE: "opentype",
-    BROWSER: "browser"
-  },
-  info: {
-    SHOW_INFO: "info"
+const PageWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+
+  @media screen and (min-width: ${BREAKPOINTS.medium}px) {
+    flex-wrap: nowrap;
   }
-};
+`;
+
+const InnerSidebar = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: var(--max-width-prose);
+  margin: 0 auto;
+  height: 100%;
+
+  > * + * {
+    margin-top: var(--spacing-base);
+  }
+
+  h2 + *,
+  * + h2 {
+    margin-top: var(--spacing-large);
+  }
+`;
+
+/* TODO: Move these styled-components elsewhere. */
+const Footer = styled.footer`
+  grid-column: span 5;
+  justify-self: flex-end;
+  margin-top: auto;
+  margin-bottom: 0;
+  padding-top: var(--spacing-large);
+
+  > * + * {
+    margin-top: var(--spacing-base);
+  }
+`;
 
 const getFeatureList = font => {
   const tags = new Set();
@@ -215,12 +215,12 @@ export default class App extends React.Component {
       ];
     }
     return [
-      <P>
+      <P key="intro-paragraph">
         Check which typographic features your font supports. Don’t worry, your
         fonts aren’t stored. Everything happens in{" "}
         <NoWrap>your browser.</NoWrap>
       </P>,
-      <DragAndDrop onChange={this.getFontData} />
+      <DragAndDrop onChange={this.getFontData} key={"drag-and-drop"} />
     ];
   }
 
@@ -237,22 +237,24 @@ export default class App extends React.Component {
       <PageWrapper>
         <Meta />
         <Sidebar>
-          <H1>
-            Smarter <br />Typography
-          </H1>
-          <HorizontalRule />
-          {this.renderUploadViewer(appState)}
-          <Footer>
-            <H4 center>
-              <Link
-                href="https://twitter.com/zaneriley"
-                rel="noopener"
-                target="_blank"
-              >
-                Made by @zaneriley
-              </Link>
-            </H4>
-          </Footer>
+          <InnerSidebar>
+            <H1>
+              Smarter <br />Typography
+            </H1>
+            <HorizontalRule />
+            {this.renderUploadViewer(appState)}
+            <Footer>
+              <H4 center>
+                <Link
+                  href="https://twitter.com/zaneriley"
+                  rel="noopener"
+                  target="_blank"
+                >
+                  Made by @zaneriley
+                </Link>
+              </H4>
+            </Footer>
+          </InnerSidebar>
         </Sidebar>
         <Main>{this.renderFontFeaturesList(appState)}</Main>
       </PageWrapper>

@@ -12,7 +12,9 @@ const WrapperStyling = {
   clipPath: "url(#bg)"
 };
 
-const DemoFontWrapper = styled.div`
+const DemoFontWrapper = styled.button`
+  appearance: none;
+
   > * {
     margin-top: 0;
     color: white;
@@ -34,33 +36,11 @@ const DemoFontWrapper = styled.div`
   }
 `;
 
-const fontSource = {
-  beginDrag(props) {
-    const { file, filename, filetype } = props;
-    return { file, filename, filetype };
-  }
-};
-
-@DragSource(ItemTypes.DEMOFONT, fontSource, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging()
-}))
 export default class DemoFont extends React.Component {
   render() {
-    const {
-      file,
-      filename,
-      filetype,
-      hideSourceOnDrag,
-      isDragging,
-      connectDragSource
-    } = this.props;
+    const { file, filename, filetype } = this.props;
 
-    if (isDragging && hideSourceOnDrag) {
-      return null;
-    }
-
-    return connectDragSource(
+    return (
       <div style={WrapperStyling}>
         <DemoFontWrapper>
           <svg
@@ -90,10 +70,6 @@ export default class DemoFont extends React.Component {
 }
 
 DemoFont.propTypes = {
-  connectDragSource: PropTypes.func.isRequired,
-  isDragging: PropTypes.bool.isRequired,
   file: PropTypes.string.isRequired,
-  filename: PropTypes.string.isRequired,
-  hideSourceOnDrag: PropTypes.bool.isRequired,
-  children: PropTypes.node
+  filename: PropTypes.string.isRequired
 };

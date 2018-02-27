@@ -6,7 +6,7 @@ import { BREAKPOINTS } from "../utils/css-variables";
 const StyledGrid = styled.div``;
 
 export const Main = styled.main`
-  max-width: calc(593px + var(--column-gap-base) * 2);
+  max-width: var(--max-width-prose);
   padding: 0 var(--column-gap-base);
   margin-top: var(--spacing-larger);
   margin-right: auto;
@@ -31,12 +31,10 @@ export const Main = styled.main`
 
 /* TODO: progressively load the background image */
 export const Sidebar = styled.aside`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
   top: 0;
   margin-top: 0;
-  padding: var(--spacing-base);
+  padding: var(--spacing-base) var(--column-gap-base) var(--column-gap-base);
+  width: 100%;
   min-height: min-content;
   height: 75vh;
   background-color: var(--color-primary-light);
@@ -45,15 +43,6 @@ export const Sidebar = styled.aside`
   background-size: cover;
   background-repeat: no-repeat;
   pointer-events: all;
-
-  > * + * {
-    margin-top: var(--spacing-base);
-  }
-
-  h2 + *,
-  * + h2 {
-    margin-top: var(--spacing-large);
-  }
 
   @media screen and (min-width: ${BREAKPOINTS.medium}px) {
     position: sticky;

@@ -1,8 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Toggle from "../Toggle";
-import { H3, H4, P } from "../Headings";
-import Link from "../Link";
+import { H3, P } from "../Headings";
 import HelpIcon from "./Icon";
 import { BREAKPOINTS } from "../../utils/css-variables";
 
@@ -139,14 +139,7 @@ const DescriptionPanel = styled.div`
   border-radius: 0 var(--border-radius-base) var(--border-radius-base)
     var(--border-radius-base);
 `;
-/* TODO: Figure out the right way to wire this component's state to 
- * the specific font feature's styling.
- * 
- * After that, loop through all the font features in a separate 
- * component so that we can check which features a font supports, 
- * and just display those.
- * 
- */
+
 export default class FontFeature extends React.Component {
   constructor(props) {
     super(props);
@@ -164,7 +157,7 @@ export default class FontFeature extends React.Component {
     this.setState({ showStyling: event.target.value });
   }
 
-  toggleDefinitionDisplay(event) {
+  toggleDefinitionDisplay() {
     this.setState({ showDefinition: !this.state.showDefinition });
   }
 
@@ -178,7 +171,7 @@ export default class FontFeature extends React.Component {
   }
 
   render() {
-    const { title, name, description, feature, code } = this.props;
+    const { title, name, description, feature } = this.props;
 
     const featureNode = React.cloneElement(feature, {
       demoStyling: this.state.showStyling
@@ -189,12 +182,13 @@ export default class FontFeature extends React.Component {
       <FeatureController>
         <HeadingControl>
           <AnchorHook>
-            <label>
+            <label htmlFor={name}>
               <input
                 type="checkbox"
                 value="toggle"
                 onChange={this.toggleDefinitionDisplay}
                 checked={this.state.showDefinition}
+                name={name}
               />
               <div>
                 <H3 id={name}>
@@ -216,3 +210,10 @@ export default class FontFeature extends React.Component {
     );
   }
 }
+
+FontFeature.propTypes = {
+  description: PropTypes.string.isRequired,
+  feature: PropTypes.node.isRequired,
+  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
+};

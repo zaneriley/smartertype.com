@@ -67,7 +67,7 @@ export default function getFontSize(int, typeface) {
       --computedLineHeight: calc((var(--line-height) * var(--capitalHeight)) * 1);
     }
 
-    @media screen and (min-width: ${BREAKPOINTS.large}px) {
+    @media screen and (min-width: ${BREAKPOINTS.larger}px) {
       --capitalHeight:  ${CAPITAL_HEIGHT_LARGE};
       --fontSize: ${FONT_SIZE_LARGE}rem;
       --computedLineHeight: calc((var(--line-height) * var(--capitalHeight)) * 1px);

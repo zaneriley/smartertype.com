@@ -38,7 +38,7 @@ const FONT_FEATURES = [
     componentName: "Subscript",
     description:
       "Numerical figures that sit below the baseline and are made to be more legible at smaller sizes. Similiar to Scientific Inferiors, these are ideal for chemical notations."
-  },
+  }
 ];
 
 export default FONT_FEATURES;

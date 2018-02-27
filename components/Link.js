@@ -10,13 +10,7 @@ const A = styled.a`
 `;
 
 const Link = ({ className, children, href, rel, target, unstyled }) => (
-  <A
-    href={href}
-    rel={rel ? "noopener" : null}
-    target={target}
-    className={className}
-    unstyled={unstyled}
-  >
+  <A href={href} target={target} className={className} unstyled={unstyled}>
     {children}
   </A>
 );
@@ -25,7 +19,6 @@ Link.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   href: PropTypes.any,
-  rel: PropTypes.bool,
   target: PropTypes.string,
   unstyled: PropTypes.bool
 };

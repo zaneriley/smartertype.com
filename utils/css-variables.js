@@ -3,7 +3,7 @@ import getLineHeight from "./typography/line-height";
 
 export const BREAKPOINTS = {
   small: 320,
-  medium: 600,
+  medium: 770,
   large: 890,
   larger: 1248,
   largest: 1440
