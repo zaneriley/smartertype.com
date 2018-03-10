@@ -8,6 +8,8 @@
  * I also need to either keep a master list separate or make it so non-existant components don't break the rendering. 
  *
  * NOTE: Double check that linting doesn't break FontFeatureList
+ * 
+ * TODO: Add change notification animations around characters getting updated under OpenType.js
  */
 
 import React from "react";
@@ -57,10 +59,11 @@ const InnerSidebar = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin: 0 auto;
   width: 100%;
   max-width: var(--max-width-prose);
-  margin: 0 auto;
   height: 100%;
+  min-height: min-content;
 
   > * + * {
     margin-top: var(--spacing-base);
@@ -166,7 +169,6 @@ export default class App extends React.Component {
         app: nextappState,
         ...nextState
       });
-      console.log(this.state);
     }
   }
 

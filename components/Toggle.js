@@ -5,6 +5,8 @@ import { COLORS, SHADOWS, BREAKPOINTS } from "../utils/css-variables";
 import { H4 } from "./Headings";
 
 const ToggleWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
   border: 1px solid ${COLORS.neutral.base};
   border-radius: var(--border-radius-base);
   overflow: hidden;
@@ -15,7 +17,7 @@ const ToggleWrapper = styled.div`
   }
 
   > * {
-    width: 33%;
+    width: 100%;
   }
 `;
 
@@ -36,19 +38,13 @@ const ToggleLabel = styled.label`
   }
 
   & > span {
-    display: inline-flex;
+    display: flex;
     min-width: min-content;
     height: var(--spacing-base);
     align-items: center;
     padding-right: var(--spacing-small);
     padding-left: var(--spacing-small);
-    text-align: center;
     color: ${COLORS.primary.base};
-
-      @media screen and (max-width: ${BREAKPOINTS.large}px) {
-        width: 33%;
-      }
-    }
   }
 
   & input:not(:checked) + span {
@@ -91,37 +87,29 @@ const Fieldset = styled.fieldset`
   }
 `;
 
-export default class Toggle extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { name, onChange } = this.props;
-
-    return (
-      <Fieldset onClick={onChange}>
-        <legend>
-          <H4>Display Options</H4>
-        </legend>
-        <ToggleWrapper>
-          <ToggleItem
-            label="OpenType"
-            name={name}
-            value="opentype"
-            defaultChecked
-          />
-          <ToggleItem label="Browser" name={name} value="browser" />
-          <ToggleItem label="Reset" name={name} value="reset" />
-        </ToggleWrapper>
-      </Fieldset>
-    );
-  }
-}
+const Toggle = ({ name, onChange }) => {
+  return (
+    <Fieldset onChange={onChange}>
+      <legend>
+        <H4>Display Options</H4>
+      </legend>
+      <ToggleWrapper>
+        <ToggleItem
+          label="OpenType"
+          name={name}
+          value="opentype"
+          defaultChecked
+        />
+        <ToggleItem label="Browser" name={name} value="browser" />
+        <ToggleItem label="Reset" name={name} value="reset" />
+      </ToggleWrapper>
+    </Fieldset>
+  );
+};
 
 Toggle.propTypes = {
   name: PropTypes.string.isRequired,
-  onClick: PropTypes.func
+  onChange: PropTypes.func.isRequired
 };
 
 ToggleItem.propTypes = {
@@ -129,3 +117,5 @@ ToggleItem.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired
 };
+
+export default Toggle;

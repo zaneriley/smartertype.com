@@ -7,12 +7,16 @@ import HelpIcon from "./Icon";
 import { BREAKPOINTS } from "../../utils/css-variables";
 
 const HeadingControl = styled.div`
-  display: flex;
+  --control-gap: var(--spacing-base);
+
+  display: grid;
   justify-content: space-between;
   grid-template-columns: auto-fit auto-fit;
   align-items: stretch;
   margin-top: calc(var(--spacing-small) * -1);
   flex-wrap: wrap;
+  grid-template-columns: repeat(2, 1fr);
+  grid-row-gap: var(--control-gap);
 
   > * {
     margin: 0;
@@ -46,6 +50,10 @@ const HeadingControl = styled.div`
     > * {
       width: 100%;
     }
+    fieldset {
+      grid-column: span 2;
+      order: 2;
+    }
   }
 `;
 
@@ -59,6 +67,7 @@ const AnchorHook = styled.span`
   position: relative;
   display: flex;
   align-items: flex-end;
+  z-index: 1;
 
   input {
     border: 0;
@@ -131,14 +140,33 @@ const AnchorHook = styled.span`
 `;
 
 const DescriptionPanel = styled.div`
+  // using content-box because we want the padding to go outside the main content bounds.
+  box-sizing: content-box;
   position: relative;
-  background-color: var(--color-accent-lighter);
+  grid-column: span 2;
   padding: calc(var(--spacing-small) + var(--spacing-smaller))
     var(--spacing-small);
-  margin: var(--spacing-smaller) calc(var(--spacing-small) * -1) 0;
+  margin: calc(-1 * var(--control-gap) + var(--spacing-smaller))
+    calc(var(--spacing-small) * -1) 0;
   border-radius: 0 var(--border-radius-base) var(--border-radius-base)
     var(--border-radius-base);
+  background-color: var(--color-accent-lighter);
 `;
+
+const fontFeatureMachine = {
+  opentype: {
+    browser: "browser",
+    reset: "reset"
+  },
+  browser: {
+    opentype: "opentype",
+    reset: "reset"
+  },
+  reset: {
+    browser: "browser",
+    opentype: "opentype"
+  }
+};
 
 export default class FontFeature extends React.Component {
   constructor(props) {
@@ -153,8 +181,42 @@ export default class FontFeature extends React.Component {
     this.toggleDefinitionDisplay = this.toggleDefinitionDisplay.bind(this);
   }
 
+  transition(action) {
+    const currentappState = this.state.showStyling;
+    const nextappState = fontFeatureMachine[currentappState][action];
+
+    if (nextappState) {
+      const nextState = this.command(nextappState, action);
+      this.setState({
+        showStyling: nextappState
+      });
+    }
+  }
+
+  /* eslint-disable consistent-return, class-methods-use-this */
+  command(nextState, action) {
+    switch (nextState) {
+      case "opentype": {
+        const showStyling = "opentype";
+        return showStyling;
+      }
+      case "browser": {
+        const showStyling = "browser";
+        return showStyling;
+      }
+      case "reset": {
+        const showStyling = "reset";
+        return showStyling;
+      }
+      default: {
+        const showStyling = "opentype";
+        return showStyling;
+      }
+    }
+  }
+
   toggleFeatureDisplay(event) {
-    this.setState({ showStyling: event.target.value });
+    this.transition(event.target.value);
   }
 
   toggleDefinitionDisplay() {
@@ -162,12 +224,7 @@ export default class FontFeature extends React.Component {
   }
 
   renderStyling() {
-    if (this.state.showStyling === "opentype") {
-      return "opentype";
-    } else if (this.state.showStyling === "browser") {
-      return "browser";
-    }
-    return "reset";
+    return this.state.showStyling;
   }
 
   render() {
@@ -182,7 +239,7 @@ export default class FontFeature extends React.Component {
       <FeatureController>
         <HeadingControl>
           <AnchorHook>
-            <label htmlFor={name}>
+            <label>
               <input
                 type="checkbox"
                 value="toggle"

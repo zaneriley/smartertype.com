@@ -33,9 +33,8 @@ export const Main = styled.main`
 export const Sidebar = styled.aside`
   top: 0;
   margin-top: 0;
-  padding: var(--spacing-base) var(--column-gap-base) var(--column-gap-base);
+  padding: var(--spacing-base) var(--column-gap-base);
   width: 100%;
-  min-height: min-content;
   height: 75vh;
   background-color: var(--color-primary-light);
   background-image: url("/static/images/background-texture-1440w.jpg");
@@ -51,7 +50,8 @@ export const Sidebar = styled.aside`
     padding: var(--column-gap-base);
     grid-template-columns: repeat(12, 1fr);
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
   }
 `;
 
