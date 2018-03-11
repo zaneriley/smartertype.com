@@ -23,6 +23,7 @@ const FontFeaturesList = features => {
     const fontFeature = (
       <FontFeature
         title={feat.title}
+        tag={feat.tag}
         name={feat.name}
         description={feat.description}
         feature={getComponentByName(feat.componentName)}

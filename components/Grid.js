@@ -43,6 +43,9 @@ export const Sidebar = styled.aside`
   background-repeat: no-repeat;
   pointer-events: all;
 
+  @media screen and (max-width: ${BREAKPOINTS.medium}px) {
+    min-height: min-content;
+  }
   @media screen and (min-width: ${BREAKPOINTS.medium}px) {
     position: sticky;
     margin: 0;
@@ -51,7 +54,6 @@ export const Sidebar = styled.aside`
     grid-template-columns: repeat(12, 1fr);
     height: 100vh;
     overflow-x: hidden;
-    overflow-y: scroll;
   }
 `;
 

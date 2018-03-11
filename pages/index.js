@@ -1,14 +1,12 @@
 /* TODO: You should figure how if you want to render the H2 with the font uploaded by 
  * using CSS or by using Opentype.js. Either way is going to involve some interesting math problems.
- *
- * After that, it'd be worth cleaning up a lot of the styling issues going on, 
- * especially on smaller break points. 
+ * UPDATE: Seems you can use the CSS font loading API to load it through FontFace. That may be the best bet.
  *
  * I need to clean up the feature data so that it doesn't break and isn't so brittle.
  * I also need to either keep a master list separate or make it so non-existant components don't break the rendering. 
- *
- * NOTE: Double check that linting doesn't break FontFeatureList
  * 
+ * See this issue here – https://github.com/nodebox/opentype.js/issues/62
+ *
  * TODO: Add change notification animations around characters getting updated under OpenType.js
  */
 

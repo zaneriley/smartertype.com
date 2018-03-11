@@ -27,7 +27,6 @@ const HeadingControl = styled.div`
   }
 
   h3 {
-    padding-bottom: var(--spacing-smaller);
     white-space: nowrap;
 
     svg {
@@ -108,6 +107,17 @@ const AnchorHook = styled.span`
 
   label {
     cursor: pointer;
+  }
+
+  @media screen and (max-width: ${BREAKPOINTS.medium}px) {
+    & input:checked + div {
+      margin-top: calc(var(--spacing-small) * -1);
+    }
+  }
+  @media screen and (min-width: ${BREAKPOINTS.medium}px) {
+    h3 {
+      padding-bottom: var(--spacing-smaller);
+    }
   }
 
   @media screen and (min-width: ${BREAKPOINTS.medium}px) and (pointer: fine) {
@@ -228,7 +238,7 @@ export default class FontFeature extends React.Component {
   }
 
   render() {
-    const { title, name, description, feature } = this.props;
+    const { title, name, description, feature, tag } = this.props;
 
     const featureNode = React.cloneElement(feature, {
       demoStyling: this.state.showStyling
@@ -248,7 +258,7 @@ export default class FontFeature extends React.Component {
                 name={name}
               />
               <div>
-                <H3 id={name}>
+                <H3 id={tag}>
                   {title}
                   <HelpIcon />
                 </H3>

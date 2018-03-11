@@ -132,8 +132,8 @@ export default class TargetBox extends Component {
             .otf, .woff, .woff2 <br />
           </H4>
         </SpaceWrapper>
-        <Svg>
-          <Rect isActive={isActive} />
+        <Svg viewBox="0 0 100 100" preserveAspectRatio="none">
+          <Rect vectorEffect="non-scaling-stroke" isActive={isActive} />
         </Svg>
       </div>
     );

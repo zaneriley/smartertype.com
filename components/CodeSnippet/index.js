@@ -26,7 +26,6 @@ const Pre = styled.pre`
   border-radius: var(--border-radius-base);
   white-space: pre-wrap;
   -webkit-overflow-scrolling: touch;
-  overflow-x: scroll;
   counter-reset: line;
 
   > span {
