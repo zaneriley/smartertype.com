@@ -135,9 +135,9 @@ export default class App extends React.Component {
       try {
         const fontData = opentype.parse(droppedFiles.target.result);
         const fontFeatures = getFeatureList(fontData);
-
+        console.log(fontData);
         const font = {
-          name: fontData.names.fontFamily.en, // "Source Sans Pro"
+          name: fontData.names.fullName.en, // "Source Sans Pro"
           features: fontFeatures,
           fmCapitalHeight: fontData.tables.os2.sCapHeight / 1000, // 0.66
           fmDescender: fontData.descender / -1000, // 0.273
@@ -148,13 +148,25 @@ export default class App extends React.Component {
       } catch (err) {
         console.log(err);
       }
+
+      const fileAsArrayBuffer = reader.result;
+      const uploadedFont = new FontFace("Uploaded Font", fileAsArrayBuffer);
+      // set fontface details
+      // update fmCapitalHeight
+      // update fmDescender
+      // update fmAscender
+
+      if (typeof window === "object" && window.document) {
+        document.fonts.add(uploadedFont);
+        uploadedFont.load();
+      }
     };
+
+    reader.readAsArrayBuffer(file);
 
     reader.onerror = err => {
       console.log(err);
     };
-
-    reader.readAsArrayBuffer(file);
   }
 
   transition(action, e) {
@@ -205,17 +217,24 @@ export default class App extends React.Component {
   renderUploadViewer(state) {
     if (state === "hasFont") {
       return [
-        <H2 center>{this.state.name}</H2>,
-        <H3>
+        <H2 center key={this.state.name} font={this.state.name}>
+          {this.state.name}
+        </H2>,
+        <H3 key={"font-features"}>
           {this.state.features.map((feature, index) => [
-            <Link href={`#${feature.tag}`}>{feature.title}</Link>,
-            <br />
+            <Link href={`#${feature.tag}`} key={feature.title}>
+              {feature.title}
+            </Link>,
+            <br key={`${feature.title}-${index}`} />
           ])}
-        </H3>
+        </H3>,
+        <P>
+          <Link>Upload another font</Link>
+        </P>
       ];
     }
     return [
-      <P key="intro-paragraph">
+      <P key="intro-paragraph" key={"intro-paragraph"}>
         Check which typographic features your font supports. Don’t worry, your
         fonts aren’t stored. Everything happens in{" "}
         <NoWrap>your browser.</NoWrap>

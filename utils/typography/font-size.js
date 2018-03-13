@@ -55,8 +55,8 @@ export default function getFontSize(int, typeface) {
     --capitalHeight:  ${CAPITAL_HEIGHT_SMALL};
     --fontSize:       ${FONT_SIZE_SMALL}rem;
     --computedLineHeight: calc((var(--line-height) * var(--capitalHeight)) * 1px);
-    --distanceBottom: ${DISTANCE_TOP};
-    --distanceTop:    ${DISTANCE_BOTTOM};
+    --distanceBottom: ${DISTANCE_BOTTOM};
+    --distanceTop:    ${DISTANCE_TOP};
     
     ${
       FONT_SIZE_SMALL >= 1

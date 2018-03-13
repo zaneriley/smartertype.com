@@ -23,6 +23,12 @@ const Larger = styled.h2`
   justify-content: ${props => (props.center ? "center" : "")};
   text-align: ${props => (props.center ? "center" : "")};
   ${TYPESTYLES.larger};
+
+  ${props =>
+    props.font
+      ? `
+    --font-family-sans: "Uploaded Font";`
+      : ``};
 `;
 
 const Large = styled.h3`
@@ -90,8 +96,8 @@ export const H1 = ({ center, children, id }) => (
   </Largest>
 );
 
-export const H2 = ({ center, children, id }) => (
-  <Larger center={center} id={id}>
+export const H2 = ({ center, children, id, font }) => (
+  <Larger center={center} id={id} font={font}>
     <OpticalAdjustment>{children}</OpticalAdjustment>
   </Larger>
 );
