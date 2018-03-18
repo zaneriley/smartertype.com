@@ -228,9 +228,7 @@ export default class App extends React.Component {
             <br key={`${feature.title}-${index}`} />
           ])}
         </H3>,
-        <P>
-          <Link>Upload another font</Link>
-        </P>
+        <DragAndDrop onChange={this.getFontData} key={"drag-and-drop"} />
       ];
     }
     return [
@@ -245,7 +243,6 @@ export default class App extends React.Component {
 
   renderFontFeaturesList(state) {
     const features = this.state.features;
-    console.log(features);
     return <FontFeaturesList features={features} />;
   }
 
@@ -258,7 +255,9 @@ export default class App extends React.Component {
         <Sidebar>
           <InnerSidebar>
             <H1>
-              Smarter <br />Typography
+              <Link unstyled href="/" aria-label="SmarterType homepage">
+                Smarter <br />Typography
+              </Link>
             </H1>
             <HorizontalRule />
             {this.renderUploadViewer(appState)}
