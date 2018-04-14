@@ -263,9 +263,19 @@ export default class App extends React.Component {
   render() {
     const appState = this.state.app;
 
+    if (typeof document !== "undefined") {
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function(e) {
           e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        });
+      });
+    }
+
     return (
       <PageWrapper>
         <Meta />
