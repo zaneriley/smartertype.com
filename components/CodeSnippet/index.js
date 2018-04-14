@@ -27,6 +27,7 @@ const Pre = styled.pre`
   white-space: pre-wrap;
   -webkit-overflow-scrolling: touch;
   counter-reset: line;
+  overflow: hidden;
 
   > span {
     display: table-row;
