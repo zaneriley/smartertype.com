@@ -30,11 +30,10 @@ const AppMachine = {
   },
   updating: {
     UPDATE_SUCCESS: "hasFont",
-    UPDATE_FAILURE: "error",
     // WRONG FILE TYPE
+    WRONG_TYPE: "error",
     // MORE THAN A SINGLE FILE
-    CANCEL_UPDATE: "noFont"
-    // CLEAR FONT ?
+    NO_FEATURES: "error"
   },
   error: {
     UPDATE: "updating"
@@ -134,17 +133,26 @@ export default class App extends React.Component {
     reader.onload = droppedFiles => {
       try {
         const fontData = opentype.parse(droppedFiles.target.result);
-        const fontFeatures = getFeatureList(fontData);
-        console.log(fontData);
+        const UPLOADED_FONT_FEATURES = getFeatureList(fontData);
+
         const font = {
           name: fontData.names.fullName.en, // "Source Sans Pro"
-          features: fontFeatures,
+          features:
+            UPLOADED_FONT_FEATURES.length > 0
+              ? UPLOADED_FONT_FEATURES
+              : FONT_FEATURES,
           fmCapitalHeight: fontData.tables.os2.sCapHeight / 1000, // 0.66
           fmDescender: fontData.descender / -1000, // 0.273
           fmAscender: fontData.ascender / 1000 // 0.984
         };
-        this.transition("UPDATE", font);
-        this.handleUpdate();
+
+        if (UPLOADED_FONT_FEATURES.length > 0) {
+          this.transition("UPDATE", font);
+          this.transition("UPDATE_SUCCESS");
+        } else {
+          this.transition("UPDATE", font);
+          this.transition("NO_FEATURES");
+        }
       } catch (err) {
         console.log(err);
       }
@@ -210,10 +218,6 @@ export default class App extends React.Component {
     this.transition("UPDATE_SUCCESS");
   }
 
-  updateCSS() {
-    return null;
-  }
-
   renderUploadViewer(state) {
     if (state === "hasFont") {
       return [
@@ -227,6 +231,16 @@ export default class App extends React.Component {
             </Link>,
             <br key={`${feature.title}-${index}`} />
           ])}
+        </H3>,
+        <DragAndDrop onChange={this.getFontData} key={"drag-and-drop"} />
+      ];
+    } else if (state === "error") {
+      return [
+        <H2 center key={this.state.name} font={this.state.name}>
+          {this.state.name}
+        </H2>,
+        <H3>
+          Sorry, It doesn't look like this font has any demoable features.
         </H3>,
         <DragAndDrop onChange={this.getFontData} key={"drag-and-drop"} />
       ];
@@ -249,6 +263,9 @@ export default class App extends React.Component {
   render() {
     const appState = this.state.app;
 
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+          e.preventDefault();
     return (
       <PageWrapper>
         <Meta />
