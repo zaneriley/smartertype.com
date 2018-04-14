@@ -120,7 +120,7 @@ export default class TargetBox extends Component {
                     type="file"
                     name="file"
                     id="file"
-                    accept=".woff,.otf,.woff2"
+                    accept=".woff,.otf,.ttf"
                     onChange={onChange}
                   />{" "}
                   <label htmlFor="file">browse your files.</label>
@@ -129,7 +129,7 @@ export default class TargetBox extends Component {
             )}
           </P>
           <H4 center>
-            .otf, .woff, .woff2 <br />
+            .otf, .ttf, .woff<br />
           </H4>
         </SpaceWrapper>
         <Svg viewBox="0 0 100 100" preserveAspectRatio="none">
