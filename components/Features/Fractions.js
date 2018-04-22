@@ -52,6 +52,7 @@ const TR = styled.div`
 
   p {
     max-width: min-content;
+    max-width: -moz-min-content;
     white-space: nowrap;
   }
 `;

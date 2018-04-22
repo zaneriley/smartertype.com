@@ -62,6 +62,10 @@ const InnerSidebar = styled.div`
   height: 100%;
   min-height: min-content;
 
+  > * {
+    flex-shrink: 0;
+  }
+
   > * + * {
     margin-top: var(--spacing-base);
   }
@@ -239,9 +243,7 @@ export default class App extends React.Component {
         <H2 center key={this.state.name} font={this.state.name}>
           {this.state.name}
         </H2>,
-        <H3>
-          Sorry, It doesn't look like this font has any demoable features.
-        </H3>,
+        <H3>Sorry, this font doesn't seem to have any demoable features.</H3>,
         <DragAndDrop onChange={this.getFontData} key={"drag-and-drop"} />
       ];
     }

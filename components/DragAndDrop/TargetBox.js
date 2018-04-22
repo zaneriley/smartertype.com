@@ -133,7 +133,14 @@ export default class TargetBox extends Component {
           </H4>
         </SpaceWrapper>
         <Svg viewBox="0 0 100 100" preserveAspectRatio="none">
-          <Rect vectorEffect="non-scaling-stroke" isActive={isActive} />
+          <Rect
+            vectorEffect="non-scaling-stroke"
+            isActive={isActive}
+            x="0"
+            y="0"
+            width="100"
+            height="100"
+          />
         </Svg>
       </div>
     );
